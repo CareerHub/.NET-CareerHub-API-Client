@@ -54,7 +54,7 @@ namespace CareerHub.Client.API.Authorization {
 
             var url = GetTokenInfoUrl(auth.AccessToken, scopes);
 
-            using (var client = new OAuthHttpClient(BaseUrl, url, auth.AccessToken)) {
+            using (var client = new OAuthHttpClient(BaseUrl, "oauth", auth.AccessToken)) {
                 //Validate token is correct
                 var result = await client.GetResource<TokenInfoModel>(url);
 
@@ -68,11 +68,11 @@ namespace CareerHub.Client.API.Authorization {
             }
 		}
 
-        public static string GetTokenInfoUrl(string accessToken, string[] scopes) {
+        internal static string GetTokenInfoUrl(string accessToken, string[] scopes) {
             if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
             if (scopes == null) throw new ArgumentNullException("scopes");
 
-            string url = "/oauth/tokeninfo?access_token=" + accessToken;
+            string url = "tokeninfo?access_token=" + accessToken;
 
             foreach (var scope in scopes) {
                 url += "&scopes=" + scope;

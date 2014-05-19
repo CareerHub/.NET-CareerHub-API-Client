@@ -16,8 +16,7 @@ namespace CareerHub.Client.Framework {
             if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException("baseUrl");
             if (String.IsNullOrWhiteSpace(location)) throw new ArgumentNullException("location");
             if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
-
-
+            
 			BaseUrl = baseUrl.TrimEnd('/') + '/' + location.TrimEnd('/') + '/';
 
             httpClient = new HttpClient();
@@ -36,8 +35,7 @@ namespace CareerHub.Client.Framework {
                 return new GetResult<T>(result);
             }
 		}
-
-
+        
         public async Task<PostResult<T>> PostResource<T>(string resource, bool relative = true) {
             var uri = GetResourceURI(resource, relative);
             var empty = new StringContent("");
