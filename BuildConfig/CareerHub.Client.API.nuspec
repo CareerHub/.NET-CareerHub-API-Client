@@ -21,7 +21,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="bin\Release\*.dll" target="lib" />
-    <file src="bin\Release\*.pdb" target="lib" />
+    <file src="..\Client\bin\Release\*.dll" target="lib" />
+    <file src="..\Client\bin\Release\*.pdb" target="lib" />
   </files>
 </package>
