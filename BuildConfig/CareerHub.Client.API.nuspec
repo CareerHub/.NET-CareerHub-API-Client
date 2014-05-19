@@ -17,7 +17,8 @@
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
-      <frameworkAssembly assemblyName="System.Net" targetFramework="net40-client, net40" />
+      <frameworkAssembly assemblyName="System.Net" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Net.Http.Formatting" targetFramework="net40" />
     </frameworkAssemblies>
   </metadata>
   <files>

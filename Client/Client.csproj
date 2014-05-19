@@ -96,7 +96,7 @@
     <Compile Include="API\Meta\RemoteAPIInfo.cs" />
     <Compile Include="API\Meta\MetaApi.cs" />
     <Compile Include="API\Students\Appointments\AppointmentTypeFormat.cs" />
-    <Compile Include="API\Students\Appointments\AppoinmentBookingModel.cs" />
+    <Compile Include="API\Students\Appointments\AppointmentBookingModel.cs" />
     <Compile Include="API\Authorization\FinishedAuthorizedModel.cs" />
     <Compile Include="API\Authorization\TokenInfoModel.cs" />
     <Compile Include="API\Students\Appointments\IAppointmentBookingsApi.cs" />

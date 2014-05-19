@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Authorization\AuthorizationApiFacts.cs" />
     <Compile Include="API\Students\FactoryFacts.cs" />
     <Compile Include="Framework\DeleteResultFacts.cs" />
     <Compile Include="Framework\GetResultFacts.cs" />

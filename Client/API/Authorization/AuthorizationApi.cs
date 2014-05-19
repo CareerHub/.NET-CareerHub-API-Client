@@ -51,8 +51,8 @@ namespace CareerHub.Client.API.Authorization {
 		public async Task<FinishedAuthorizedModel> FinishOAuth(HttpRequestBase request, string[] scopes) {
 			//Finish processing oauth
 			var auth = oauthClient.ProcessUserAuthorization(request);
-            
-			var url = "/oauth/tokeninfo?access_token=" + auth.AccessToken + "&scopes=" + String.Join("&scopes=", scopes);
+
+            var url = GetTokenInfoUrl(auth.AccessToken, scopes);
 
             using (var client = new OAuthHttpClient(BaseUrl, url, auth.AccessToken)) {
                 //Validate token is correct
@@ -67,6 +67,19 @@ namespace CareerHub.Client.API.Authorization {
                 };
             }
 		}
+
+        public static string GetTokenInfoUrl(string accessToken, string[] scopes) {
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            if (scopes == null) throw new ArgumentNullException("scopes");
+
+            string url = "/oauth/tokeninfo?access_token=" + accessToken;
+
+            foreach (var scope in scopes) {
+                url += "&scopes=" + scope;
+            }
+
+            return url;
+        }
         
         private TokenInfoModel ValidateToken(GetResult<TokenInfoModel> result, string expectedAudience) {
             if (!result.Success) {
