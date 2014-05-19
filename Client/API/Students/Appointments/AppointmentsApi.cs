@@ -15,8 +15,8 @@ namespace CareerHub.Client.API.Students.Appointments {
             client = new OAuthHttpClient(baseUrl, AppointmentsApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<AppoinmentBookingModel>>> GetUpcomingAppointments() {
-            return client.GetResource<IEnumerable<AppoinmentBookingModel>>("upcoming");
+        public Task<GetResult<IEnumerable<AppointmentBookingModel>>> GetUpcomingAppointments() {
+            return client.GetResource<IEnumerable<AppointmentBookingModel>>("upcoming");
 		}
 
         public void Dispose() {

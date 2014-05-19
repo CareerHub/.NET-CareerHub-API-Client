@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace CareerHub.Client.API.Students.Appointments {
-    public sealed class AppoinmentBookingModel {
+    public sealed class AppointmentBookingModel {
         public int ID { get; set; }
         public string TypeName { get; set; }
 

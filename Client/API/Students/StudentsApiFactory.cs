@@ -23,13 +23,13 @@ namespace CareerHub.Client.API.Students {
         }
         
         //Events
-        public IEventsApi GetEvents() {
+        public IEventsApi GetEventsApi() {
             // Do versioning here
 
             return new EventsApi(info.BaseUrl, accessToken);
         }
 
-        public IEventBookingsApi GetEventBookings() {
+        public IEventBookingsApi GetEventBookingsApi() {
             // Do versioning here
             return new EventBookingsApi(info.BaseUrl, accessToken);
         }
