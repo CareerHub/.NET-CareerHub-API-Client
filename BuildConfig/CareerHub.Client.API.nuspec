@@ -21,7 +21,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\Client\bin\Release\*.dll" target="lib" />
-    <file src="..\Client\bin\Release\*.pdb" target="lib" />
+    <file src="..\Client\bin\Release\CareerHub.Client.dll" target="lib" />
+    <file src="..\Client\bin\Release\CareerHub.Client.pdb" target="lib" />
   </files>
 </package>
