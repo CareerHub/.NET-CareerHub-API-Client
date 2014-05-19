@@ -20,4 +20,8 @@
       <frameworkAssembly assemblyName="System.Net" targetFramework="net40-client, net40" />
     </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="bin\Release\*.dll" target="lib" />
+    <file src="bin\Release\*.pdb" target="lib" />
+  </files>
 </package>
