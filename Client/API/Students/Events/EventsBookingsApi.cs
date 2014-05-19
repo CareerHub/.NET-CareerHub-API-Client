@@ -1,0 +1,33 @@
+﻿using CareerHub.Client.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace CareerHub.Client.API.Students.Events {
+    internal sealed class EventBookingsApi : IDisposable, IEventBookingsApi {
+        private const string ApiBase = "/api/students/alpha/events";
+        private readonly OAuthHttpClient client = null;
+
+        public EventBookingsApi(string baseUrl, string accessToken) {
+            client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
+		}
+		
+		public Task<GetResult<IEnumerable<EventModel>>> GetUpcomingEvents() {
+            return client.GetResource<IEnumerable<EventModel>>("bookings/upcoming");
+		}
+
+        public Task<PostResult<EventBookingModel>> BookEvent(int eventId) {
+            return client.PostResource<EventBookingModel>(eventId + "/bookings");
+        }
+
+        public Task<DeleteResult> CancelBooking(int eventId) {
+            return client.DeleteResource(eventId + "/bookings");
+        }
+
+        public void Dispose() {
+            client.Dispose();
+        }
+	}
+}
