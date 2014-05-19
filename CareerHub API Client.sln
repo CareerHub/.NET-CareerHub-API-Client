@@ -17,6 +17,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{84915AFE-92A0-4466-A6A6-4721EDA506B4}"
 	ProjectSection(SolutionItems) = preProject
 		BuildConfig\Build.xml = BuildConfig\Build.xml
+		BuildConfig\CareerHub.Client.API.nuspec = BuildConfig\CareerHub.Client.API.nuspec
 	EndProjectSection
 EndProject
 Global

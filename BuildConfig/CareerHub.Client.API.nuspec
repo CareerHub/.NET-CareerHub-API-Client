@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CareerHub.Client.API</id>
+    <version>1.0.0-alpha</version>
+    <authors>CareerHub</authors>
+    <owners>CareerHub</owners>
+    <projectUrl>https://github.com/CareerHub/.NET-CareerHub-API-Client</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Client for the CareerHub API</description>
+    <releaseNotes>This is the initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>CareerHub</tags>
+    <dependencies>
+      <dependency id="DotNetOpenAuth.OAuth2.Client" version="4.3.4.13329" />
+      <dependency id="Microsoft.Net.Http" version="2.2.22" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Net" targetFramework="net40-client, net40" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
