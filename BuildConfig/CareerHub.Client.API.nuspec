@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CareerHub.Client.API</id>
-    <version>not-used-set-by-teamcity</version>
+    <version>1.0.0</version>
     <authors>CareerHub</authors>
     <owners>CareerHub</owners>
     <projectUrl>https://github.com/CareerHub/.NET-CareerHub-API-Client</projectUrl>
