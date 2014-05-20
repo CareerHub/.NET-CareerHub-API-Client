@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace CareerHub.Client.API.Students.Questions {
-    internal sealed class QuestionsApi : IDisposable {
+    internal sealed class QuestionsApi : IDisposable, IQuestionsApi {
 
         private const string ApiBase = "api/students/alpha/questions";
         private readonly OAuthHttpClient client = null;

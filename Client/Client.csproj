@@ -115,7 +115,9 @@
     <Compile Include="API\Students\News\INewsApi.cs" />
     <Compile Include="API\Students\News\NewsApi.cs" />
     <Compile Include="API\Students\News\NewsModel.cs" />
+    <Compile Include="API\Students\Questions\IQuestionResponsesApi.cs" />
     <Compile Include="API\Students\Questions\IQuestionResponseSubmissionModel.cs" />
+    <Compile Include="API\Students\Questions\IQuestionsApi.cs" />
     <Compile Include="API\Students\Questions\IQuestionSubmissionModel.cs" />
     <Compile Include="API\Students\Questions\QuestionResponsesApi.cs" />
     <Compile Include="API\Students\Questions\QuestionResponseSubmissionModel.cs" />
