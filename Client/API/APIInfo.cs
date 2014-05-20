@@ -27,7 +27,7 @@ namespace CareerHub.Client.API {
 
             string areaname = area.ToString();
 
-            var remoteArea = remoteInfo.Areas.Single(a => a.Name == areaname);
+            var remoteArea = remoteInfo.Areas.SingleOrDefault(a => a.Name.Equals(areaname, StringComparison.OrdinalIgnoreCase));
             if (remoteArea == null) {
                 return null;
             }
