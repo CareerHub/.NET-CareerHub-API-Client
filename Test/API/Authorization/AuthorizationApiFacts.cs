@@ -14,7 +14,7 @@ namespace CareerHub.Client.Tests.API.Authorization {
             string scope1 = "Test.Scope.1";
             string scope2 = "Test.Scope.2";
 
-            string expected = String.Format("/oauth/tokeninfo?access_token={0}&scopes={1}&scopes={2}", accessToken, scope1, scope2);
+            string expected = String.Format("/tokeninfo?access_token={0}&scopes={1}&scopes={2}", accessToken, scope1, scope2);
             string actual = AuthorizationApi.GetTokenInfoUrl(accessToken, new string[] { scope1, scope2 });
 
             Assert.Equal(expected, actual);
