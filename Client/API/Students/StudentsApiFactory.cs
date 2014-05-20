@@ -1,5 +1,9 @@
 ﻿using CareerHub.Client.API.Students.Appointments;
+using CareerHub.Client.API.Students.Education;
 using CareerHub.Client.API.Students.Events;
+using CareerHub.Client.API.Students.Experiences;
+using CareerHub.Client.API.Students.Jobs;
+using CareerHub.Client.API.Students.News;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +19,36 @@ namespace CareerHub.Client.API.Students {
             this.accessToken = accessToken;
         }
 
-        //Appointments
         public IAppointmentBookingsApi GetAppointmentBookingsApi() {
             RequireComponent("Appointments");
-            // Do versioning here
             return new AppointmentBookingsApi(info.BaseUrl, accessToken);
         }
-        
-        //Events
-        public IEventsApi GetEventsApi() {
-            // Do versioning here
 
+        public IEducationApi GetEducationApi() {
+            return new EducationApi(info.BaseUrl, accessToken);
+        }
+        
+        public IEventsApi GetEventsApi() {
             return new EventsApi(info.BaseUrl, accessToken);
         }
 
         public IEventBookingsApi GetEventBookingsApi() {
-            // Do versioning here
             return new EventBookingsApi(info.BaseUrl, accessToken);
         }
+
+        public IExperiencesApi GetExperiencesApi() {
+            return new ExperiencesApi(info.BaseUrl, accessToken);
+        }
+
+        public IJobsApi GetJobsApi() {
+            return new JobsApi(info.BaseUrl, accessToken);
+        }
+
+        public INewsApi GetNewsApi() {
+            return new NewsApi(info.BaseUrl, accessToken);
+        }
+
+
 
         private void RequireComponent(string name) {
             if (!info.SupportedComponents.Contains(name)) {

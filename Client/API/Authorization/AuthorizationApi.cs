@@ -10,6 +10,7 @@ using DotNetOpenAuth.OAuth2;
 using DotNetOpenAuth.Messaging;
 using System.Threading.Tasks;
 using CareerHub.Client.Framework;
+using CareerHub.Client.Framework.Results;
 
 namespace CareerHub.Client.API.Authorization {
     public sealed class AuthorizationApi {

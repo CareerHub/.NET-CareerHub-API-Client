@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CareerHub.Client.Framework.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -23,8 +24,8 @@ namespace CareerHub.Client.Framework {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 		}
 
-        public async Task<GetResult<T>> GetResource<T>(string resource, bool relative = true) {
-            var uri = GetResourceURI(resource, relative);
+        public async Task<GetResult<T>> GetResource<T>(string resource) {
+            var uri = GetResourceURI(resource);
             var response = await httpClient.GetAsync(uri);
 
             if (!response.IsSuccessStatusCode) {
@@ -36,8 +37,8 @@ namespace CareerHub.Client.Framework {
             }
 		}
         
-        public async Task<PostResult<T>> PostResource<T>(string resource, bool relative = true) {
-            var uri = GetResourceURI(resource, relative);
+        public async Task<PostResult<T>> PostResource<T>(string resource) {
+            var uri = GetResourceURI(resource);
             var empty = new StringContent("");
             var response = await httpClient.PostAsync(uri, empty);
 
@@ -50,9 +51,9 @@ namespace CareerHub.Client.Framework {
             }
         }
 
-        public async Task<PostResult<R>> PostResource<T, R>(string resource, T content, bool relative = true) {
-            var uri = GetResourceURI(resource, relative).ToString();
-            var response = await httpClient.PostAsync<T>(uri, content, new JsonMediaTypeFormatter());
+        public async Task<PostResult<R>> PostResource<T, R>(string resource, T content) {
+            var uri = GetResourceURI(resource).ToString();
+            var response = await httpClient.PutAsJsonAsync<T>(uri, content);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
@@ -63,8 +64,22 @@ namespace CareerHub.Client.Framework {
             }
         }
 
-        public async Task<DeleteResult> DeleteResource(string resource, bool relative = true) {
-            var uri = GetResourceURI(resource, relative);
+
+        public async Task<PostResult<R>> PutResource<T, R>(string resource, T content) {
+            var uri = GetResourceURI(resource).ToString();
+            var response = await httpClient.PutAsJsonAsync<T>(uri, content);
+
+            if (!response.IsSuccessStatusCode) {
+                string error = await response.Content.ReadAsStringAsync();
+                return new PostResult<R>(error);
+            } else {
+                R result = await response.Content.ReadAsAsync<R>();
+                return new PostResult<R>(result);
+            }
+        }
+
+        public async Task<DeleteResult> DeleteResource(string resource) {
+            var uri = GetResourceURI(resource);
             var response = await httpClient.DeleteAsync(uri);
 
             if (!response.IsSuccessStatusCode) {
@@ -75,11 +90,8 @@ namespace CareerHub.Client.Framework {
             }
         }
         
-        private Uri GetResourceURI(string resource, bool relative) {
-            if (relative) {
-                resource = BaseUrl + resource;
-            }
-
+        private Uri GetResourceURI(string resource) {
+            resource = BaseUrl + resource;
             return new Uri(resource);
         }
 

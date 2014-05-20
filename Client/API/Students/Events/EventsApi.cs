@@ -1,4 +1,5 @@
 ﻿using CareerHub.Client.Framework;
+using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,11 @@ namespace CareerHub.Client.API.Students.Events {
             return client.GetResource<IEnumerable<EventModel>>("");
 		}
 
-        public Task<GetResult<IEnumerable<EventModel>>> SearchEvents(string text) {
-            return client.GetResource<IEnumerable<EventModel>>("search?text=" + text);
+        public Task<GetResult<IEnumerable<EventModel>>> SearchEvents(string text, int? take = null, int? skip = null) {
+            string resource = "search?text=" + text;            
+            resource = UrlUtility.AddPagingParams(resource, take, skip);
+
+            return client.GetResource<IEnumerable<EventModel>>(resource);
         }
 
         public Task<GetResult<EventModel>> GetEvent(int id) {

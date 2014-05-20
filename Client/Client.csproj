@@ -100,6 +100,24 @@
     <Compile Include="API\Authorization\FinishedAuthorizedModel.cs" />
     <Compile Include="API\Authorization\TokenInfoModel.cs" />
     <Compile Include="API\Students\Appointments\IAppointmentBookingsApi.cs" />
+    <Compile Include="API\Students\Education\EducationModel.cs" />
+    <Compile Include="API\Students\Education\EducationApi.cs" />
+    <Compile Include="API\Students\Education\IEducationApi.cs" />
+    <Compile Include="API\Students\Experiences\ExperienceModel.cs" />
+    <Compile Include="API\Students\Experiences\ExperienceSubmissionModel.cs" />
+    <Compile Include="API\Students\Experiences\ExperiencesApi.cs" />
+    <Compile Include="API\Students\Experiences\IExperiencesApi.cs" />
+    <Compile Include="API\Students\Experiences\IExperienceSubmissionModel.cs" />
+    <Compile Include="API\Students\Jobs\EmployerType.cs" />
+    <Compile Include="API\Students\Jobs\IJobsApi.cs" />
+    <Compile Include="API\Students\Jobs\JobsApi.cs" />
+    <Compile Include="API\Students\Jobs\JobModel.cs" />
+    <Compile Include="API\Students\News\INewsApi.cs" />
+    <Compile Include="API\Students\News\NewsApi.cs" />
+    <Compile Include="API\Students\News\NewsModel.cs" />
+    <Compile Include="API\Students\Resources\IResourcesApi.cs" />
+    <Compile Include="API\Students\Resources\ResourcesApi.cs" />
+    <Compile Include="API\Students\Resources\ResourceModel.cs" />
     <Compile Include="API\Students\StudentsApiFactory.cs" />
     <Compile Include="API\Students\Events\EventBookingModel.cs" />
     <Compile Include="API\Students\Events\EventBookingSettingsModel.cs" />
@@ -109,17 +127,21 @@
     <Compile Include="Framework\OAuthHttpClient.cs" />
     <Compile Include="API\Students\Appointments\AppointmentsApi.cs" />
     <Compile Include="API\Authorization\AuthorizationApi.cs" />
-    <Compile Include="Framework\DeleteResult.cs" />
+    <Compile Include="Framework\Results\DeleteResult.cs" />
     <Compile Include="API\Students\Events\EventsApi.cs" />
     <Compile Include="API\Students\Events\EventsBookingsApi.cs" />
-    <Compile Include="Framework\GetResult.cs" />
-    <Compile Include="Framework\IApiResult.cs" />
-    <Compile Include="Framework\PostResult.cs" />
+    <Compile Include="Framework\Results\GetResult.cs" />
+    <Compile Include="Framework\Results\IApiResult.cs" />
+    <Compile Include="Framework\Results\PostResult.cs" />
+    <Compile Include="Framework\UrlUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\Students\Questions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

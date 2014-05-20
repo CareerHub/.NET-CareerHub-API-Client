@@ -99,10 +99,11 @@
   <ItemGroup>
     <Compile Include="API\Authorization\AuthorizationApiFacts.cs" />
     <Compile Include="API\Students\FactoryFacts.cs" />
-    <Compile Include="Framework\DeleteResultFacts.cs" />
-    <Compile Include="Framework\GetResultFacts.cs" />
-    <Compile Include="Framework\PostResultFacts.cs" />
-    <Compile Include="Framework\ResultModel.cs" />
+    <Compile Include="Framework\Results\DeleteResultFacts.cs" />
+    <Compile Include="Framework\Results\GetResultFacts.cs" />
+    <Compile Include="Framework\Results\PostResultFacts.cs" />
+    <Compile Include="Framework\Results\ResultModel.cs" />
+    <Compile Include="Framework\UrlUtilityFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
