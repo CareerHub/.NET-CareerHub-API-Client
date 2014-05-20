@@ -2,13 +2,15 @@
 
 namespace CareerHub.Client.API.Students.Experiences {
     public interface IExperienceSubmissionModel {
-        string ContactEmail { get; set; }
-        string ContactName { get; set; }
-        string ContactPhone { get; set; }
-        string Description { get; set; }
-        DateTime? EndDate { get; set; }
-        string Organisation { get; set; }
-        DateTime StartDate { get; set; }
-        string Title { get; set; }
+        string Title { get; }
+        string Description { get; }
+        string Organisation { get; }
+
+        DateTime StartDate { get; }
+        DateTime? EndDate { get; }
+
+        string ContactName { get; }
+        string ContactEmail { get; }
+        string ContactPhone { get; }
     }
 }

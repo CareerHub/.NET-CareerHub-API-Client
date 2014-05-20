@@ -115,6 +115,15 @@
     <Compile Include="API\Students\News\INewsApi.cs" />
     <Compile Include="API\Students\News\NewsApi.cs" />
     <Compile Include="API\Students\News\NewsModel.cs" />
+    <Compile Include="API\Students\Questions\IQuestionResponseSubmissionModel.cs" />
+    <Compile Include="API\Students\Questions\IQuestionSubmissionModel.cs" />
+    <Compile Include="API\Students\Questions\QuestionResponsesApi.cs" />
+    <Compile Include="API\Students\Questions\QuestionResponseSubmissionModel.cs" />
+    <Compile Include="API\Students\Questions\QuestionsApi.cs" />
+    <Compile Include="API\Students\Questions\QuestionResponseModel.cs" />
+    <Compile Include="API\Students\Questions\QuestionsModel.cs" />
+    <Compile Include="API\Students\Questions\QuestionSubmissionModel.cs" />
+    <Compile Include="API\Students\UploadFileModel.cs" />
     <Compile Include="API\Students\Resources\IResourcesApi.cs" />
     <Compile Include="API\Students\Resources\ResourcesApi.cs" />
     <Compile Include="API\Students\Resources\ResourceModel.cs" />
@@ -140,9 +149,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\Students\Questions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
