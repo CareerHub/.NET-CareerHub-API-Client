@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +15,12 @@ namespace CareerHub.Client.API.Students.Questions {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<QuestionResponseModel>>> GetResponses(int questionId) {
+        public Task<IEnumerable<QuestionResponseModel>> GetResponses(int questionId) {
             string resource = GetResourceLocation(questionId);
             return client.GetResource<IEnumerable<QuestionResponseModel>>(resource);
 		}
 
-        public Task<PostResult<QuestionResponseModel>> CreateResponse(int questionId, IQuestionSubmissionModel model) {
+        public Task<QuestionResponseModel> CreateResponse(int questionId, IQuestionSubmissionModel model) {
             string resource = GetResourceLocation(questionId);
             return client.PostResource<IQuestionSubmissionModel, QuestionResponseModel>(resource, model);
         }

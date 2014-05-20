@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +15,19 @@ namespace CareerHub.Client.API.Students.Experiences {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
         
-        public Task<GetResult<IEnumerable<ExperienceModel>>> GetExperiences() {
+        public Task<IEnumerable<ExperienceModel>> GetExperiences() {
             return client.GetResource<IEnumerable<ExperienceModel>>("");
 		}
 
-        public Task<GetResult<ExperienceModel>> GetExperience(int id) {
+        public Task<ExperienceModel> GetExperience(int id) {
             return client.GetResource<ExperienceModel>(id.ToString());
         }
 
-        public Task<PostResult<ExperienceModel>> CreateExperience(IExperienceSubmissionModel model) {
+        public Task<ExperienceModel> CreateExperience(IExperienceSubmissionModel model) {
             return client.PostResource<IExperienceSubmissionModel, ExperienceModel>("", model);
         }
 
-        public Task<PostResult<ExperienceModel>> UpdateExperience(int id, IExperienceSubmissionModel model) {
+        public Task<ExperienceModel> UpdateExperience(int id, IExperienceSubmissionModel model) {
             return client.PutResource<IExperienceSubmissionModel, ExperienceModel>(id.ToString(), model);
         }
 

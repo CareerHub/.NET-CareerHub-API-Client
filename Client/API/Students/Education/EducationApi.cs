@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,11 @@ namespace CareerHub.Client.API.Students.Education {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<EducationModel>>> GetEducation() {
+        public Task<IEnumerable<EducationModel>> GetEducation() {
             return client.GetResource<IEnumerable<EducationModel>>("");
 		}
 
-        public Task<GetResult<EducationModel>> GetEducation(int id) {
+        public Task<EducationModel> GetEducation(int id) {
             return client.GetResource<EducationModel>(id.ToString());
         }
 

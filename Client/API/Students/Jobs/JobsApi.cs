@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +14,11 @@ namespace CareerHub.Client.API.Students.Jobs {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<JobModel>>> GetJobs() {
+        public Task<IEnumerable<JobModel>> GetJobs() {
             return client.GetResource<IEnumerable<JobModel>>("");
 		}
 
-        public Task<GetResult<IEnumerable<JobModel>>> SearchJobs(string text, string location = null, int? take = null, int? skip = null) {
+        public Task<IEnumerable<JobModel>> SearchJobs(string text, string location = null, int? take = null, int? skip = null) {
             if (String.IsNullOrWhiteSpace(text)) throw new ArgumentNullException("text");
 
             string resource = "search?text=" + text;
@@ -33,7 +32,7 @@ namespace CareerHub.Client.API.Students.Jobs {
             return client.GetResource<IEnumerable<JobModel>>(resource);
         }
 
-        public Task<GetResult<JobModel>> GetJob(int id) {
+        public Task<JobModel> GetJob(int id) {
             return client.GetResource<JobModel>(id.ToString());
         }
 

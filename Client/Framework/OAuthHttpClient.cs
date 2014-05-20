@@ -1,4 +1,4 @@
-﻿using CareerHub.Client.Framework.Results;
+﻿using CareerHub.Client.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,69 +24,67 @@ namespace CareerHub.Client.Framework {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 		}
 
-        public async Task<GetResult<T>> GetResource<T>(string resource) {
+        public async Task<T> GetResource<T>(string resource) {
             var uri = GetResourceURI(resource);
             var response = await httpClient.GetAsync(uri);
 
             if (!response.IsSuccessStatusCode) {
-                // TODO: Get meaningful error
-                return new GetResult<T>("Could not get resource");
-            } else {
-                T result = await response.Content.ReadAsAsync<T>();
-                return new GetResult<T>(result);
+                string error = await response.Content.ReadAsStringAsync();
+                throw new CareerHubApiHttpException(error, response.StatusCode);
             }
+
+            T result = await response.Content.ReadAsAsync<T>();
+            return result;
 		}
         
-        public async Task<PostResult<T>> PostResource<T>(string resource) {
+        public async Task<T> PostResource<T>(string resource) {
             var uri = GetResourceURI(resource);
             var empty = new StringContent("");
             var response = await httpClient.PostAsync(uri, empty);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
-                return new PostResult<T>(error);
-            } else {
-                T result = await response.Content.ReadAsAsync<T>();
-                return new PostResult<T>(result);
+                throw new CareerHubApiHttpException(error, response.StatusCode);
             }
+
+            T result = await response.Content.ReadAsAsync<T>();
+            return result;
         }
 
-        public async Task<PostResult<R>> PostResource<T, R>(string resource, T content) {
+        public async Task<R> PostResource<T, R>(string resource, T content) {
             var uri = GetResourceURI(resource).ToString();
             var response = await httpClient.PutAsJsonAsync<T>(uri, content);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
-                return new PostResult<R>(error);
-            } else {
-                R result = await response.Content.ReadAsAsync<R>();
-                return new PostResult<R>(result);
-            }
+                throw new CareerHubApiHttpException(error, response.StatusCode);
+            } 
+
+            R result = await response.Content.ReadAsAsync<R>();
+            return result;
         }
 
 
-        public async Task<PostResult<R>> PutResource<T, R>(string resource, T content) {
+        public async Task<R> PutResource<T, R>(string resource, T content) {
             var uri = GetResourceURI(resource).ToString();
             var response = await httpClient.PutAsJsonAsync<T>(uri, content);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
-                return new PostResult<R>(error);
-            } else {
-                R result = await response.Content.ReadAsAsync<R>();
-                return new PostResult<R>(result);
+                throw new CareerHubApiHttpException(error, response.StatusCode);
             }
+
+            R result = await response.Content.ReadAsAsync<R>();
+            return result;
         }
 
-        public async Task<DeleteResult> DeleteResource(string resource) {
+        public async Task DeleteResource(string resource) {
             var uri = GetResourceURI(resource);
             var response = await httpClient.DeleteAsync(uri);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
-                return new DeleteResult(error);
-            } else {
-                return new DeleteResult();
+                throw new CareerHubApiHttpException(error, response.StatusCode);
             }
         }
         

@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace CareerHub.Client.API.Students.Appointments {
             client = new OAuthHttpClient(baseUrl, AppointmentsApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<AppointmentBookingModel>>> GetUpcomingAppointments() {
+        public Task<IEnumerable<AppointmentBookingModel>> GetUpcomingAppointments() {
             return client.GetResource<IEnumerable<AppointmentBookingModel>>("upcoming");
 		}
 

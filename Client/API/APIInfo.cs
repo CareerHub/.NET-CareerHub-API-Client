@@ -18,12 +18,7 @@ namespace CareerHub.Client.API {
         public static async Task<APIInfo> GetFromRemote(string baseUrl, ApiArea area) {
             var metaApi = new MetaApi(baseUrl);
 
-            var result = await metaApi.GetAPIInfo();
-            if (!result.Success) {
-                throw new ApplicationException(result.Error);
-            }
-            
-            var remoteInfo = result.Content;
+            var remoteInfo = await metaApi.GetAPIInfo();
 
             string areaname = area.ToString();
 

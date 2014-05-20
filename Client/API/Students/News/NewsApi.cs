@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +14,17 @@ namespace CareerHub.Client.API.Students.News {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<NewsModel>>> GetNews() {
+        public Task<IEnumerable<NewsModel>> GetNews() {
             return client.GetResource<IEnumerable<NewsModel>>("");
 		}
 
-        public Task<GetResult<IEnumerable<NewsModel>>> SearchNews(string text, int? take = null, int? skip = null) {
+        public Task<IEnumerable<NewsModel>> SearchNews(string text, int? take = null, int? skip = null) {
             string resource = "search?text=" + text;
             resource = UrlUtility.AddPagingParams(resource, take, skip);
             return client.GetResource<IEnumerable<NewsModel>>(resource);
         }
 
-        public Task<GetResult<NewsModel>> GetNews(int id) {
+        public Task<NewsModel> GetNews(int id) {
             return client.GetResource<NewsModel>(id.ToString());
         }
 

@@ -135,15 +135,13 @@
     <Compile Include="API\Students\Events\EventModel.cs" />
     <Compile Include="API\Students\Events\IEventBookingsApi.cs" />
     <Compile Include="API\Students\Events\IEventsApi.cs" />
+    <Compile Include="Framework\Exceptions\CareerHubApiException.cs" />
+    <Compile Include="Framework\Exceptions\CareerHubApiHttpException.cs" />
     <Compile Include="Framework\OAuthHttpClient.cs" />
     <Compile Include="API\Students\Appointments\AppointmentsApi.cs" />
     <Compile Include="API\Authorization\AuthorizationApi.cs" />
-    <Compile Include="Framework\Results\DeleteResult.cs" />
     <Compile Include="API\Students\Events\EventsApi.cs" />
     <Compile Include="API\Students\Events\EventsBookingsApi.cs" />
-    <Compile Include="Framework\Results\GetResult.cs" />
-    <Compile Include="Framework\Results\IApiResult.cs" />
-    <Compile Include="Framework\Results\PostResult.cs" />
     <Compile Include="Framework\UrlUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

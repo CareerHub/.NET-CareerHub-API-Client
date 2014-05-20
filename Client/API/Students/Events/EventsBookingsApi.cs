@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +14,15 @@ namespace CareerHub.Client.API.Students.Events {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 		
-		public Task<GetResult<IEnumerable<EventModel>>> GetUpcomingEvents() {
+		public Task<IEnumerable<EventModel>> GetUpcomingEvents() {
             return client.GetResource<IEnumerable<EventModel>>("bookings/upcoming");
 		}
 
-        public Task<PostResult<EventBookingModel>> BookEvent(int eventId) {
+        public Task<EventBookingModel> BookEvent(int eventId) {
             return client.PostResource<EventBookingModel>(eventId + "/bookings");
         }
 
-        public Task<DeleteResult> CancelBooking(int eventId) {
+        public Task CancelBooking(int eventId) {
             return client.DeleteResource(eventId + "/bookings");
         }
 

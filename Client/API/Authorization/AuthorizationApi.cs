@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CareerHub.Client.Framework;
+using CareerHub.Client.Framework.Exceptions;
+using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OAuth2;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.IO;
-using DotNetOpenAuth.OAuth2;
-using DotNetOpenAuth.Messaging;
 using System.Threading.Tasks;
-using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
+using System.Web;
 
 namespace CareerHub.Client.API.Authorization {
     public sealed class AuthorizationApi {
@@ -56,6 +56,7 @@ namespace CareerHub.Client.API.Authorization {
             var url = GetTokenInfoUrl(auth.AccessToken, scopes);
 
             using (var client = new OAuthHttpClient(BaseUrl, "oauth", auth.AccessToken)) {
+
                 //Validate token is correct
                 var result = await client.GetResource<TokenInfoModel>(url);
 
@@ -81,16 +82,10 @@ namespace CareerHub.Client.API.Authorization {
 
             return url;
         }
-        
-        private TokenInfoModel ValidateToken(GetResult<TokenInfoModel> result, string expectedAudience) {
-            if (!result.Success) {
-                throw new HttpException("Could not finish authorisation: " + result.Error);
-            }
 
-            var tokenInfo = result.Content;
-
+        private TokenInfoModel ValidateToken(TokenInfoModel tokenInfo, string expectedAudience) {
 			if (String.IsNullOrEmpty(tokenInfo.Audience) || tokenInfo.Audience != expectedAudience) {
-				throw new HttpException("token with unexpected audience: " + tokenInfo.Audience);
+                throw new CareerHubApiException("Token with unexpected audience: " + tokenInfo.Audience);
 			}
 
             return tokenInfo;

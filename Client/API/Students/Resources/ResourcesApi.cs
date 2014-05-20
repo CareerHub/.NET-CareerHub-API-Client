@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace CareerHub.Client.API.Students.Resources {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<GetResult<IEnumerable<ResourceModel>>> GetBookmarkedResources(int? take = null, int? skip = null) {
+        public Task<IEnumerable<ResourceModel>> GetBookmarkedResources(int? take = null, int? skip = null) {
             string resource = "bookmarks";
 
             resource = UrlUtility.AddPagingParams(resource, take, skip);
@@ -23,7 +22,7 @@ namespace CareerHub.Client.API.Students.Resources {
             return client.GetResource<IEnumerable<ResourceModel>>(resource);
         }
 
-        public Task<GetResult<IEnumerable<ResourceModel>>> SearchResources(string text, int? take = null, int? skip = null) {
+        public Task<IEnumerable<ResourceModel>> SearchResources(string text, int? take = null, int? skip = null) {
             string resource = "search?text=" + text;
             resource = UrlUtility.AddPagingParams(resource, take, skip);
             return client.GetResource<IEnumerable<ResourceModel>>(resource);
