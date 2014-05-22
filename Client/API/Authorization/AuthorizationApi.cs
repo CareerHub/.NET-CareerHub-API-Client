@@ -61,14 +61,45 @@ namespace CareerHub.Client.API.Authorization {
                 var result = await client.GetResource<TokenInfoModel>(url);
 
                 var tokenInfo = ValidateToken(result, ConsumerKey);
-
+                
                 return new FinishedAuthorizedModel {
                     Audience = tokenInfo.Audience,
                     User = tokenInfo.User,
-                    AccessToken = auth.AccessToken
+                    Scope = auth.Scope,
+                    AccessToken = auth.AccessToken,
+                    AccessTokenExpirationUtc = auth.AccessTokenExpirationUtc,                    
+                    RefreshToken = auth.RefreshToken
                 };
             }
 		}
+
+        public FinishedAuthorizedModel CareerHubLoginAuthorize(string username, string password, IEnumerable<string> scopes = null) {
+            var auth = oauthClient.ExchangeUserCredentialForToken(username, password, scopes);
+            
+            return new FinishedAuthorizedModel {
+                Scope = auth.Scope,
+                AccessToken = auth.AccessToken,
+                AccessTokenExpirationUtc = auth.AccessTokenExpirationUtc,
+                RefreshToken = auth.RefreshToken
+            };
+        }
+
+        public FinishedAuthorizedModel GetRefreshedTokens(string refreshToken) {
+            var auth = new AuthorizationState {
+                RefreshToken = refreshToken
+            };
+
+            if (oauthClient.RefreshAuthorization(auth)) {
+                return new FinishedAuthorizedModel {
+                    Scope = auth.Scope,
+                    AccessToken = auth.AccessToken,
+                    AccessTokenExpirationUtc = auth.AccessTokenExpirationUtc,
+                    RefreshToken = auth.RefreshToken
+                };
+            }
+            
+            return null;
+        }
 
         internal static string GetTokenInfoUrl(string accessToken, string[] scopes) {
             if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
