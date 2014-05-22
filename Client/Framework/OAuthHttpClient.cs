@@ -53,7 +53,7 @@ namespace CareerHub.Client.Framework {
 
         public async Task<R> PostResource<T, R>(string resource, T content) {
             var uri = GetResourceURI(resource).ToString();
-            var response = await httpClient.PutAsJsonAsync<T>(uri, content);
+            var response = await httpClient.PostAsJsonAsync<T>(uri, content);
 
             if (!response.IsSuccessStatusCode) {
                 string error = await response.Content.ReadAsStringAsync();
