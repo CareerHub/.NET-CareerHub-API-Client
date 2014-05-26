@@ -7,11 +7,12 @@ using System.Web;
 
 namespace CareerHub.Client.API.Students.Events {
     internal sealed class EventsApi : IDisposable, IEventsApi {
-        private const string EventsApiBase = "api/students/alpha/events";
+
+        private const string ApiBase = "api/jobseeker/v1/events";
         private readonly OAuthHttpClient client = null;
 
         public EventsApi(string baseUrl, string accessToken) {
-            client = new OAuthHttpClient(baseUrl, EventsApiBase, accessToken);
+            client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 		
 		public Task<IEnumerable<EventModel>> GetEvents() {

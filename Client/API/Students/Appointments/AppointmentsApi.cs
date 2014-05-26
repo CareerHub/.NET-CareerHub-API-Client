@@ -8,11 +8,11 @@ using System.Web;
 namespace CareerHub.Client.API.Students.Appointments {
     internal sealed class AppointmentBookingsApi : IDisposable, IAppointmentBookingsApi {
         
-		private const string AppointmentsApiBase = "api/students/alpha/appointments/bookings";
+		private const string ApiBase = "api/jobseeker/v1/appointments/bookings";
         private readonly OAuthHttpClient client = null;
 
 		public AppointmentBookingsApi(string baseUrl, string accessToken) {
-            client = new OAuthHttpClient(baseUrl, AppointmentsApiBase, accessToken);
+            client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
         public Task<IEnumerable<AppointmentBookingModel>> GetUpcomingAppointments() {

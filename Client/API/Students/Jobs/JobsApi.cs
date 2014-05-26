@@ -7,7 +7,8 @@ using System.Web;
 
 namespace CareerHub.Client.API.Students.Jobs {
     internal sealed class JobsApi : IDisposable, IJobsApi {
-        private const string ApiBase = "api/students/alpha/jobs";
+
+        private const string ApiBase = "api/jobseeker/v1/jobs";
         private readonly OAuthHttpClient client = null;
 
         public JobsApi(string baseUrl, string accessToken) {

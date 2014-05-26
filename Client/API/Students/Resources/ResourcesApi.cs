@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace CareerHub.Client.API.Students.Resources {
-    internal sealed class ResourcesApi : IDisposable, CareerHub.Client.API.Students.Resources.IResourcesApi  {
-        private const string ApiBase = "api/students/alpha/resources";
+    internal sealed class ResourcesApi : IDisposable, IResourcesApi  {
+
+        private const string ApiBase = "api/jobseeker/v1/resources";
         private readonly OAuthHttpClient client = null;
 
         public ResourcesApi(string baseUrl, string accessToken) {

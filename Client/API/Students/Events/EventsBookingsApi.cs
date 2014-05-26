@@ -7,7 +7,8 @@ using System.Web;
 
 namespace CareerHub.Client.API.Students.Events {
     internal sealed class EventBookingsApi : IDisposable, IEventBookingsApi {
-        private const string ApiBase = "/api/students/alpha/events";
+
+        private const string ApiBase = "/api/jobseeker/v1/events";
         private readonly OAuthHttpClient client = null;
 
         public EventBookingsApi(string baseUrl, string accessToken) {
