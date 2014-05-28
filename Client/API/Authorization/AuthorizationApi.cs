@@ -45,7 +45,7 @@ namespace CareerHub.Client.API.Authorization {
 		public OutgoingWebResponse StartOAuth(string callback, string[] scopes) {
 			var state = new AuthorizationState(scopes);
 			state.Callback = new Uri(callback);
-
+            
             return oauthClient.PrepareRequestUserAuthorization(state);
 		}
 		
@@ -76,6 +76,18 @@ namespace CareerHub.Client.API.Authorization {
         public FinishedAuthorizedModel CareerHubLoginAuthorize(string username, string password, IEnumerable<string> scopes = null) {
             var auth = oauthClient.ExchangeUserCredentialForToken(username, password, scopes);
             
+            return new FinishedAuthorizedModel {
+                User = username,
+                Scope = auth.Scope,
+                AccessToken = auth.AccessToken,
+                AccessTokenExpirationUtc = auth.AccessTokenExpirationUtc,
+                RefreshToken = auth.RefreshToken
+            };
+        }
+
+        public FinishedAuthorizedModel GetApiClientAccessToken(IEnumerable<string> scopes = null) {
+            var auth = oauthClient.GetClientAccessToken(scopes);
+
             return new FinishedAuthorizedModel {
                 Scope = auth.Scope,
                 AccessToken = auth.AccessToken,
