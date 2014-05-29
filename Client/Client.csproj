@@ -114,7 +114,6 @@
     <Compile Include="API\Trusted\Experiences\ExperienceSubmissionModel.cs" />
     <Compile Include="API\Trusted\Experiences\IExperiencesApi.cs" />
     <Compile Include="API\Trusted\Experiences\IExperienceSubmissionModel.cs" />
-    <Compile Include="API\Trusted\StudentsApiFactory.cs" />
     <Compile Include="API\Students\Appointments\AppointmentBookingModel.cs" />
     <Compile Include="API\Students\Appointments\AppointmentTypeFormat.cs" />
     <Compile Include="API\Authorization\FinishedAuthorizedModel.cs" />
@@ -155,6 +154,7 @@
     <Compile Include="API\Students\Events\EventModel.cs" />
     <Compile Include="API\Students\Events\IEventBookingsApi.cs" />
     <Compile Include="API\Students\Events\IEventsApi.cs" />
+    <Compile Include="API\Trusted\TrustedApiFactory.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiException.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiHttpException.cs" />
     <Compile Include="Framework\OAuthHttpClient.cs" />
