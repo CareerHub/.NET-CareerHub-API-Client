@@ -109,6 +109,12 @@
     <Compile Include="API\Public\Resources\ResourceModel.cs" />
     <Compile Include="API\Public\Resources\ResourcesApi.cs" />
     <Compile Include="API\Public\PublicApiFactory.cs" />
+    <Compile Include="API\Trusted\Experiences\ExperienceModel.cs" />
+    <Compile Include="API\Trusted\Experiences\ExperiencesApi.cs" />
+    <Compile Include="API\Trusted\Experiences\ExperienceSubmissionModel.cs" />
+    <Compile Include="API\Trusted\Experiences\IExperiencesApi.cs" />
+    <Compile Include="API\Trusted\Experiences\IExperienceSubmissionModel.cs" />
+    <Compile Include="API\Trusted\StudentsApiFactory.cs" />
     <Compile Include="API\Students\Appointments\AppointmentBookingModel.cs" />
     <Compile Include="API\Students\Appointments\AppointmentTypeFormat.cs" />
     <Compile Include="API\Authorization\FinishedAuthorizedModel.cs" />
