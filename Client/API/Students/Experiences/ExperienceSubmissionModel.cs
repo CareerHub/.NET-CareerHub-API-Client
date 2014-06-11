@@ -8,8 +8,8 @@ namespace CareerHub.Client.API.Students.Experiences {
         public string Title { get; set; }
         public string Organisation { get; set; }
 
-        public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime? End { get; set; }
 
         public string Description { get; set; }
 

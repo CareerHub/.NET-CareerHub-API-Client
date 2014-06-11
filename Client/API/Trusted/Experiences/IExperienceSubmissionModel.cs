@@ -6,8 +6,8 @@ namespace CareerHub.Client.API.Trusted.Experiences {
         string Description { get; }
         string Organisation { get; }
 
-        DateTime StartDate { get; }
-        DateTime? EndDate { get; }
+        DateTime Start { get; }
+        DateTime? End { get; }
 
         string ContactName { get; }
         string ContactEmail { get; }
