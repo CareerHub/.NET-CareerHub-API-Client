@@ -12,5 +12,8 @@ namespace CareerHub.Client.API.Trusted.Experiences {
         string ContactName { get; }
         string ContactEmail { get; }
         string ContactPhone { get; }
+
+        int TypeID { get; }
+        int? HoursID { get; }
     }
 }
