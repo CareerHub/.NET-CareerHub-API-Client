@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace CareerHub.Client.API.Students.Experiences {
     public interface IExperiencesApi {
+        Task<IEnumerable<ExpereinceTypeModel>> GetExperienceTypes();
+
         Task<ExperienceModel> GetExperience(int id);
         Task<IEnumerable<ExperienceModel>> GetExperiences();
         Task<ExperienceModel> CreateExperience(IExperienceSubmissionModel model);
