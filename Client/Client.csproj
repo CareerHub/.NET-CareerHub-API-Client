@@ -118,7 +118,10 @@
     <Compile Include="API\Public\Resources\ResourcesApi.cs" />
     <Compile Include="API\Public\PublicApiFactory.cs" />
     <Compile Include="API\Students\Experiences\ExperienceTypeModel.cs" />
+    <Compile Include="API\Students\Experiences\ExperienceTypesApi.cs" />
+    <Compile Include="API\Students\Experiences\IExperienceTypesApi.cs" />
     <Compile Include="API\Trusted\Experiences\ExperienceModel.cs" />
+    <Compile Include="API\Trusted\Experiences\ExperienceTypesApi.cs" />
     <Compile Include="API\Trusted\Experiences\ExperiencesApi.cs" />
     <Compile Include="API\Trusted\Experiences\ExperienceSubmissionModel.cs" />
     <Compile Include="API\Trusted\Experiences\ExperienceTypeModel.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="API\Students\Events\EventModel.cs" />
     <Compile Include="API\Students\Events\IEventBookingsApi.cs" />
     <Compile Include="API\Students\Events\IEventsApi.cs" />
+    <Compile Include="API\Trusted\Experiences\IExperienceTypesApi.cs" />
     <Compile Include="API\Trusted\TrustedApiFactory.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiException.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiHttpException.cs" />

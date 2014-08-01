@@ -38,6 +38,10 @@ namespace CareerHub.Client.API.Students {
             return new EventBookingsApi(info.BaseUrl, accessToken);
         }
 
+        public IExperienceTypesApi GetExperienceTypesApi() {
+            return new ExperienceTypesApi(info.BaseUrl, accessToken);
+        }
+
         public IExperiencesApi GetExperiencesApi() {
             return new ExperiencesApi(info.BaseUrl, accessToken);
         }

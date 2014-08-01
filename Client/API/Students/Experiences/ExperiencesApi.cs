@@ -15,10 +15,6 @@ namespace CareerHub.Client.API.Students.Experiences {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
 
-        public Task<IEnumerable<ExpereinceTypeModel>> GetExperienceTypes() {
-            return client.GetResource<IEnumerable<ExpereinceTypeModel>>("types");
-        }
-
         public Task<IEnumerable<ExperienceModel>> GetExperiences() {
             return client.GetResource<IEnumerable<ExperienceModel>>("");
 		}

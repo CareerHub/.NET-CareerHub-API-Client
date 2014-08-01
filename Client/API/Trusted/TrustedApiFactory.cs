@@ -14,6 +14,10 @@ namespace CareerHub.Client.API.Trusted {
             this.accessToken = accessToken;
         }
 
+        public IExperienceTypesApi GetExperienceTypesApi() {
+            return new ExperienceTypesApi(info.BaseUrl, accessToken);
+        }
+
         public IExperiencesApi GetExperiencesApi() {
             return new ExperiencesApi(info.BaseUrl, accessToken);
         }
