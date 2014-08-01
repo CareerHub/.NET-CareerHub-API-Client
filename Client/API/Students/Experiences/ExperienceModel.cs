@@ -20,7 +20,10 @@ namespace CareerHub.Client.API.Students.Experiences {
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
 
+        public int? TypeID { get; set; }
         public string Type { get; set; }
+
+        public int? HoursID { get; set; }
         public string Hours { get; set; }
     }
 }
