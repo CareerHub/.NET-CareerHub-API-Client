@@ -14,11 +14,11 @@
     <dependencies>
       <dependency id="DotNetOpenAuth.OAuth2.Client" version="4.3.4.13329" />
       <dependency id="Microsoft.Net.Http" version="2.2.22" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.1.2" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
       <frameworkAssembly assemblyName="System.Net" targetFramework="net40" />
-      <frameworkAssembly assemblyName="System.Net.Http.Formatting" targetFramework="net40" />
     </frameworkAssemblies>
   </metadata>
   <files>
