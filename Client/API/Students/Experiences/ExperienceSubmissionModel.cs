@@ -16,5 +16,8 @@ namespace CareerHub.Client.API.Students.Experiences {
         public string ContactName { get; set; }
         public string ContactEmail { get; set; }
         public string ContactPhone { get; set; }
+        
+        public int TypeID { get; set; }
+        public int? HoursID { get; set; }
     }
 }
