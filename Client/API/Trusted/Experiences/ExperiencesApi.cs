@@ -35,6 +35,11 @@ namespace CareerHub.Client.API.Trusted.Experiences {
             return client.PutResource<IExperienceSubmissionModel, ExperienceModel>(resource, model);
         }
 
+        public Task DeleteExperience(string studentId, int id) {
+            string resource = GetResourceUrl(studentId, id);
+            return client.DeleteResource(resource);
+        }
+
         private string GetResourceUrl(string studentId, int? id = null) {
             string resouce = studentId;
 

@@ -9,5 +9,6 @@ namespace CareerHub.Client.API.Trusted.Experiences {
         Task<IEnumerable<ExperienceModel>> GetExperiences(string studentid);
         Task<ExperienceModel> CreateExperience(string studentid, IExperienceSubmissionModel model);
         Task<ExperienceModel> UpdateExperience(string studentid, int id, IExperienceSubmissionModel model);
+        Task DeleteExperience(string studentid, int id);
     }
 }
