@@ -6,6 +6,8 @@ using System.Text;
 namespace CareerHub.Client.API.Trusted.Experiences {
     public class ExperienceModel {
         public int ID { get; set; }
+        public bool CanDelete { get; set; }
+
         public string Title { get; set; }
         public string Organisation { get; set; }
         public string Description { get; set; }
