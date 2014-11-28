@@ -1,6 +1,7 @@
 ﻿using CareerHub.Client.API;
 using CareerHub.Client.API.Authorization;
 using CareerHub.Client.API.Integrations;
+using CareerHub.Client.API.Integrations.Workflows;
 using ManyConsole;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CareerHub.Client.Integration {
-    public class WorkflowProgress : ConsoleCommand {
+    public class Workflow : ConsoleCommand {
         private const string baseUrl = "http://localhost/careerhub/";
         
         private int? id;
         private string clientId;
         private string clientSecret;
 
-        public WorkflowProgress() {
-            IsCommand("workflowprogress", "Gets workflow progress for a workflow");
+        public Workflow() {
+            IsCommand("workflow", "Gets workflow progress for a workflow");
             HasOption("client-id=", "the api client id", id => clientId = id);
             HasOption("client-secret=", "the api client id", secret => clientSecret = secret);
             HasOption<int>("id=", "the workflow id", i => id = i);
@@ -46,7 +47,10 @@ namespace CareerHub.Client.Integration {
             if (!id.HasValue) {
                 Console.Write("Workflow ID: ");
                 string idString = Console.ReadLine();
-                id = int.Parse(idString);
+
+                if (!String.IsNullOrWhiteSpace(idString)) {
+                    id = int.Parse(idString);
+                }
             }
 
             var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
@@ -56,19 +60,28 @@ namespace CareerHub.Client.Integration {
             var authorization = authApi.GetApiClientAccessToken(new string[] { "Integrations.Workflows" });
 
             var factory = new IntegrationsApiFactory(info, authorization.AccessToken);
-            var api = factory.GetWorkflowProgressApi();
+            var api = factory.GetWorkflowApi();
 
-            var result = await api.Get(id.Value);
+            var workflows = new List<WorkflowModel>();
 
-            foreach (var student in result) {
-                Console.WriteLine("{0}: {1} {2} ({3}) - {4} {5}", 
-                    student.JobSeeker.EntityID, 
-                    student.JobSeeker.FirstName,
-                    student.JobSeeker.LastName,
-                    student.JobSeeker.StudentID,
-                    student.Status,
-                    student.CompletedDate
+            if (id.HasValue) {
+                var workflow = await api.GetWorkflow(id.Value);
+                workflows.Add(workflow);
+            } else {
+                var result = await api.GetWorkflows();
+                workflows.AddRange(result);
+            }
+
+            foreach (var workflow in workflows) {
+                Console.WriteLine("{1} ({0})",
+                    workflow.ID,
+                    workflow.Title
                 );
+                if (!String.IsNullOrWhiteSpace(workflow.Description)) {
+                    Console.WriteLine(workflow.Description);
+                }
+
+                Console.WriteLine();
             }
 
             return 0;

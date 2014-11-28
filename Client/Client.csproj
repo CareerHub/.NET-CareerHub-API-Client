@@ -78,7 +78,10 @@
     <Compile Include="API\ApiArea.cs" />
     <Compile Include="API\APIInfo.cs" />
     <Compile Include="API\Integrations\Workflows\ComponentStatus.cs" />
+    <Compile Include="API\Integrations\Workflows\IWorkflowApi.cs" />
     <Compile Include="API\Integrations\Workflows\JobSeekerInfo.cs" />
+    <Compile Include="API\Integrations\Workflows\WorkflowApi.cs" />
+    <Compile Include="API\Integrations\Workflows\WorkflowModel.cs" />
     <Compile Include="API\Meta\RemoteApiArea.cs" />
     <Compile Include="API\Meta\RemoteAPIInfo.cs" />
     <Compile Include="API\Meta\MetaApi.cs" />

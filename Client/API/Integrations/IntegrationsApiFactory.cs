@@ -14,7 +14,13 @@ namespace CareerHub.Client.API.Integrations {
             this.accessToken = accessToken;
         }
 
+        public IWorkflowApi GetWorkflowApi() {
+            RequireComponent("Workflows");
+            return new WorkflowApi(info.BaseUrl, accessToken);
+        }
+
         public IWorkflowProgressApi GetWorkflowProgressApi() {
+            RequireComponent("Workflows");
             return new WorkflowProgressApi(info.BaseUrl, accessToken);
         }
         
