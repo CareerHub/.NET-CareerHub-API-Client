@@ -6,6 +6,8 @@ using System.Text;
 namespace CareerHub.Client.API {
     public enum ApiArea {
         Public,
-        Students
+        Students,
+        Trusted,
+        Integrations
     }
 }

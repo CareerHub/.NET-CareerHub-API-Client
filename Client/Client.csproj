@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="API\ApiArea.cs" />
     <Compile Include="API\APIInfo.cs" />
+    <Compile Include="API\Integrations\Workflows\ComponentStatus.cs" />
+    <Compile Include="API\Integrations\Workflows\JobSeekerInfo.cs" />
     <Compile Include="API\Meta\RemoteApiArea.cs" />
     <Compile Include="API\Meta\RemoteAPIInfo.cs" />
     <Compile Include="API\Meta\MetaApi.cs" />
@@ -97,6 +99,10 @@
     <Compile Include="API\Students\Experiences\ExperienceTypeModel.cs" />
     <Compile Include="API\Students\Experiences\ExperienceTypesApi.cs" />
     <Compile Include="API\Students\Experiences\IExperienceTypesApi.cs" />
+    <Compile Include="API\Integrations\IntegrationsApiFactory.cs" />
+    <Compile Include="API\Integrations\Workflows\IWorkflowProgressApi.cs" />
+    <Compile Include="API\Integrations\Workflows\ProgressModel.cs" />
+    <Compile Include="API\Integrations\Workflows\WorkflowProgressApi.cs" />
     <Compile Include="API\Trusted\Experiences\ExperienceModel.cs" />
     <Compile Include="API\Trusted\Experiences\ExperienceTypesApi.cs" />
     <Compile Include="API\Trusted\Experiences\ExperiencesApi.cs" />
