@@ -14,7 +14,11 @@ namespace CareerHub.Client.API.Trusted.Experiences {
         public ExperiencesApi(string baseUrl, string accessToken) {
             client = new OAuthHttpClient(baseUrl, ApiBase, accessToken);
 		}
-        
+
+        public Task<IEnumerable<ExperienceModel>> GetExperiences() {
+            return client.GetResource<IEnumerable<ExperienceModel>>("");
+        }
+
         public Task<IEnumerable<ExperienceModel>> GetExperiences(string studentId) {
             string resource = GetResourceUrl(studentId);
             return client.GetResource<IEnumerable<ExperienceModel>>(resource);

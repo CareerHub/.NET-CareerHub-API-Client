@@ -77,6 +77,14 @@
   <ItemGroup>
     <Compile Include="API\ApiArea.cs" />
     <Compile Include="API\APIInfo.cs" />
+    <Compile Include="API\Integrations\Jobs\ContractHours.cs" />
+    <Compile Include="API\Integrations\Jobs\ContractType.cs" />
+    <Compile Include="API\Integrations\Jobs\DisplayContactModel.cs" />
+    <Compile Include="API\Integrations\Jobs\EmployerModel.cs" />
+    <Compile Include="API\Integrations\Jobs\EmployerType.cs" />
+    <Compile Include="API\Integrations\Jobs\IJobsApi.cs" />
+    <Compile Include="API\Integrations\Jobs\JobsApi.cs" />
+    <Compile Include="API\Integrations\Jobs\JobModel.cs" />
     <Compile Include="API\Integrations\Workflows\ComponentStatus.cs" />
     <Compile Include="API\Integrations\Workflows\IWorkflowApi.cs" />
     <Compile Include="API\Integrations\Workflows\JobSeekerInfo.cs" />
@@ -154,6 +162,7 @@
     <Compile Include="API\Students\Events\IEventBookingsApi.cs" />
     <Compile Include="API\Students\Events\IEventsApi.cs" />
     <Compile Include="API\Trusted\Experiences\IExperienceTypesApi.cs" />
+    <Compile Include="API\Trusted\Experiences\JobSeekerInfo.cs" />
     <Compile Include="API\Trusted\TrustedApiFactory.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiException.cs" />
     <Compile Include="Framework\Exceptions\CareerHubApiHttpException.cs" />

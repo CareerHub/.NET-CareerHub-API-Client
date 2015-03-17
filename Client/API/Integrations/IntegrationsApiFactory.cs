@@ -1,4 +1,5 @@
-﻿using CareerHub.Client.API.Integrations.Workflows;
+﻿using CareerHub.Client.API.Integrations.Jobs;
+using CareerHub.Client.API.Integrations.Workflows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace CareerHub.Client.API.Integrations {
         public IntegrationsApiFactory(APIInfo info, string accessToken) {
             this.info = info;
             this.accessToken = accessToken;
+        }
+
+        public IJobsApi GetJobsApi() {
+            return new JobsApi(info.BaseUrl, accessToken);
         }
 
         public IWorkflowApi GetWorkflowApi() {

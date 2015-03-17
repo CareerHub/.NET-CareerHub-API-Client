@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Experiences.cs" />
+    <Compile Include="Jobs.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="WorkflowProgress.cs" />
     <Compile Include="Program.cs" />
