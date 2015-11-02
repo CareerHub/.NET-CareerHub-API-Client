@@ -1,6 +1,7 @@
 ﻿using CareerHub.Client.API;
 using CareerHub.Client.API.Authorization;
 using CareerHub.Client.API.Integrations;
+using CareerHub.Client.API.Integrations.Jobs;
 using ManyConsole;
 using System;
 using System.Collections.Generic;
@@ -9,19 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using CareerHub.Client.Meta;
 
-namespace CareerHub.Client.Integration {
-    public class WorkflowProgress : ConsoleCommand {
+namespace CareerHub.Client.ConsoleApiTester {
+    public class Jobs : ConsoleCommand {
         private const string baseUrl = "http://localhost/careerhub/";
         
         private int? id;
         private string clientId;
         private string clientSecret;
 
-        public WorkflowProgress() {
-            IsCommand("workflowprogress", "Gets workflow progress for a workflow");
+        public Jobs() {
+            IsCommand("jobs", "Gets jobs");
             HasOption("client-id=", "the api client id", id => clientId = id);
             HasOption("client-secret=", "the api client id", secret => clientSecret = secret);
-            HasOption<int>("id=", "the workflow id", i => id = i);
+            HasOption<int>("id=", "the job id", i => id = i);
         }
 
         public override int Run(string[] remainingArguments) {
@@ -45,30 +46,37 @@ namespace CareerHub.Client.Integration {
             }
             
             if (!id.HasValue) {
-                Console.Write("Workflow ID: ");
+                Console.Write("Job ID: ");
                 string idString = Console.ReadLine();
-                id = int.Parse(idString);
+
+                if (!String.IsNullOrWhiteSpace(idString)) {
+                    id = int.Parse(idString);
+                }
             }
 
 			var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
             
             var authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
 
-			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Integrations.Workflows" });
+			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Integrations.Jobs" });
 
             var factory = new IntegrationsApiFactory(info, authorization.AccessToken);
-            var api = factory.GetWorkflowProgressApi();
+            var api = factory.GetJobsApi();
 
-            var result = await api.Get(id.Value);
+            var jobs = new List<JobModel>();
 
-            foreach (var student in result) {
-                Console.WriteLine("{0}: {1} {2} ({3}) - {4} {5}", 
-                    student.JobSeeker.EntityID, 
-                    student.JobSeeker.FirstName,
-                    student.JobSeeker.LastName,
-                    student.JobSeeker.StudentID,
-                    student.Status,
-                    student.CompletedDate
+            if (id.HasValue) {
+                var job = await api.GetJob(id.Value);
+                jobs.Add(job);
+            } else {
+                var result = await api.GetJobs();
+                jobs.AddRange(result);
+            }
+
+            foreach (var job in jobs) {
+                Console.WriteLine("{1} ({0})",
+                    job.ID,
+                    job.Title
                 );
             }
 

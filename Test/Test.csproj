@@ -114,9 +114,9 @@
       <Project>{D7346C46-C7EE-41E4-8894-BBAF6B8FEFC8}</Project>
       <Name>JobSeekers.Public</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Integration\Integration.csproj">
+    <ProjectReference Include="..\ConsoleApiTester\ConsoleApiTester.csproj">
       <Project>{D7F99806-73DD-4308-BF27-4053D1CE95F0}</Project>
-      <Name>Integration</Name>
+      <Name>ConsoleApiTester</Name>
     </ProjectReference>
     <ProjectReference Include="..\Integrations\Inetgrations.csproj">
       <Project>{A65DA224-EDDF-44F7-877C-92F4DE0EE9C5}</Project>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CareerHub.Client.Integration {
+namespace CareerHub.Client.ConsoleApiTester {
     public class Program {
         static int Main(string[] args) {
             var commands = ConsoleCommandDispatcher.FindCommandsInSameAssemblyAs(typeof(Program));

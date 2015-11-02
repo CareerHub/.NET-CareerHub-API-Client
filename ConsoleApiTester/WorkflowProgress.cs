@@ -1,7 +1,6 @@
 ﻿using CareerHub.Client.API;
 using CareerHub.Client.API.Authorization;
-using CareerHub.Client.JobSeekers.Trusted.API;
-using CareerHub.Client.JobSeekers.Trusted.API.Experiences;
+using CareerHub.Client.API.Integrations;
 using ManyConsole;
 using System;
 using System.Collections.Generic;
@@ -10,18 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using CareerHub.Client.Meta;
 
-namespace CareerHub.Client.Integration {
-    public class Experiences : ConsoleCommand {
+namespace CareerHub.Client.ConsoleApiTester {
+    public class WorkflowProgress : ConsoleCommand {
         private const string baseUrl = "http://localhost/careerhub/";
         
         private int? id;
         private string clientId;
         private string clientSecret;
 
-        public Experiences() {
-            IsCommand("experiences", "Gets Experiences");
+        public WorkflowProgress() {
+            IsCommand("workflowprogress", "Gets workflow progress for a workflow");
             HasOption("client-id=", "the api client id", id => clientId = id);
             HasOption("client-secret=", "the api client id", secret => clientSecret = secret);
+            HasOption<int>("id=", "the workflow id", i => id = i);
         }
 
         public override int Run(string[] remainingArguments) {
@@ -44,24 +44,31 @@ namespace CareerHub.Client.Integration {
                 clientSecret = Console.ReadLine();
             }
             
+            if (!id.HasValue) {
+                Console.Write("Workflow ID: ");
+                string idString = Console.ReadLine();
+                id = int.Parse(idString);
+            }
+
 			var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
             
             var authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
 
-			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Trusted.Experiences" });
+			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Integrations.Workflows" });
 
-            var factory = new TrustedApiFactory(info, authorization.AccessToken);
-            var api = factory.GetExperiencesApi();
+            var factory = new IntegrationsApiFactory(info, authorization.AccessToken);
+            var api = factory.GetWorkflowProgressApi();
 
-            var experiences = new List<ExperienceModel>();
+            var result = await api.Get(id.Value);
 
-            var result = await api.GetExperiences();
-            experiences.AddRange(result);
-
-            foreach (var experience in experiences) {
-                Console.WriteLine("{1} ({0})",
-                    experience.ID,
-                    experience.Title
+            foreach (var student in result) {
+                Console.WriteLine("{0}: {1} {2} ({3}) - {4} {5}", 
+                    student.JobSeeker.EntityID, 
+                    student.JobSeeker.FirstName,
+                    student.JobSeeker.LastName,
+                    student.JobSeeker.StudentID,
+                    student.Status,
+                    student.CompletedDate
                 );
             }
 

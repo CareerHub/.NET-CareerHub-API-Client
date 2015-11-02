@@ -13,9 +13,9 @@ namespace CareerHub.Client.Framework {
         private readonly HttpClient httpClient;
 
         public OAuthHttpClient(string baseUrl, string location, string accessToken) {
-            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException("baseUrl");
-            if (String.IsNullOrWhiteSpace(location)) throw new ArgumentNullException("location");
-            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
+            if (String.IsNullOrWhiteSpace(location)) throw new ArgumentNullException(nameof(location));
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
             
 			BaseUrl = baseUrl.TrimEnd('/') + '/' + location.TrimEnd('/') + '/';
 

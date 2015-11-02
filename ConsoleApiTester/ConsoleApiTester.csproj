@@ -7,8 +7,8 @@
     <ProjectGuid>{D7F99806-73DD-4308-BF27-4053D1CE95F0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CareerHub.Client.Integration</RootNamespace>
-    <AssemblyName>CareerHub.Client.Integration</AssemblyName>
+    <RootNamespace>CareerHub.Client.ConsoleApiTester</RootNamespace>
+    <AssemblyName>CareerHub.Client.ConsoleApiTester</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CareerHub.Client.Meta;
 
-namespace CareerHub.Client.Integration {
+namespace CareerHub.Client.ConsoleApiTester {
     public class Workflow : ConsoleCommand {
         private const string baseUrl = "http://localhost/careerhub/";
         
