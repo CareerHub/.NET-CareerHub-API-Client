@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CareerHub.Client.Meta;
 
 namespace CareerHub.Client.Integration {
     public class WorkflowProgress : ConsoleCommand {
@@ -49,11 +50,11 @@ namespace CareerHub.Client.Integration {
                 id = int.Parse(idString);
             }
 
-            var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
+			var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
             
             var authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
 
-            var authorization = authApi.GetApiClientAccessToken(new string[] { "Integrations.Workflows" });
+			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Integrations.Workflows" });
 
             var factory = new IntegrationsApiFactory(info, authorization.AccessToken);
             var api = factory.GetWorkflowProgressApi();

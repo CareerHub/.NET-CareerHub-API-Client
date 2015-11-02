@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D7346C46-C7EE-41E4-8894-BBAF6B8FEFC8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CareerHub.Client.API.JobSeekers.Public</RootNamespace>
+    <AssemblyName>CareerHub.Client.API.JobSeekers.Public</AssemblyName>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="API\Events\EventModel.cs" />
+    <Compile Include="API\Events\EventsApi.cs" />
+    <Compile Include="API\Events\IEventsApi.cs" />
+    <Compile Include="API\Jobs\EmployerType.cs" />
+    <Compile Include="API\Jobs\IJobsApi.cs" />
+    <Compile Include="API\Jobs\JobModel.cs" />
+    <Compile Include="API\Jobs\JobsApi.cs" />
+    <Compile Include="API\News\INewsApi.cs" />
+    <Compile Include="API\News\NewsApi.cs" />
+    <Compile Include="API\News\NewsModel.cs" />
+    <Compile Include="API\PublicApiFactory.cs" />
+    <Compile Include="API\Resources\IResourcesApi.cs" />
+    <Compile Include="API\Resources\ResourceModel.cs" />
+    <Compile Include="API\Resources\ResourcesApi.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Meta\Meta.csproj">
+      <Project>{47FD2E3A-A578-4B0E-8FDD-1FC973C33D94}</Project>
+      <Name>Meta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{F0F93FB4-9251-4795-B62F-24247A452BF8}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

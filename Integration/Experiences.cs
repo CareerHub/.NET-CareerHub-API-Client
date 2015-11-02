@@ -1,13 +1,14 @@
 ﻿using CareerHub.Client.API;
 using CareerHub.Client.API.Authorization;
-using CareerHub.Client.API.Trusted;
-using CareerHub.Client.API.Trusted.Experiences;
+using CareerHub.Client.JobSeekers.Trusted.API;
+using CareerHub.Client.JobSeekers.Trusted.API.Experiences;
 using ManyConsole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CareerHub.Client.Meta;
 
 namespace CareerHub.Client.Integration {
     public class Experiences : ConsoleCommand {
@@ -43,11 +44,11 @@ namespace CareerHub.Client.Integration {
                 clientSecret = Console.ReadLine();
             }
             
-            var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
+			var info = await APIInfo.GetFromRemote(baseUrl, ApiArea.Integrations);
             
             var authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
 
-            var authorization = authApi.GetApiClientAccessToken(new string[] { "Trusted.Experiences" });
+			var authorization = authApi.RequestClientCredentialsAuth(new string[] { "Trusted.Experiences" });
 
             var factory = new TrustedApiFactory(info, authorization.AccessToken);
             var api = factory.GetExperiencesApi();

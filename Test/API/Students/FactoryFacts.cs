@@ -1,10 +1,11 @@
 ﻿using CareerHub.Client.API;
-using CareerHub.Client.API.Students;
+using CareerHub.Client.JobSeekers.Authorised.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
+using CareerHub.Client.Meta;
 
 namespace CareerHub.Client.Tests.API.Students {
     public class FactoryFacts {
@@ -13,17 +14,15 @@ namespace CareerHub.Client.Tests.API.Students {
 
         [Fact]
         public void GetAppointments_Works() {
-            Assert.DoesNotThrow(() => {
-                var info = new APIInfo {
-                    BaseUrl = BaseUrl,
-                    SupportedComponents = new List<string> { "Appointments" },
-                    Version = "alpha"
-                };
+			var info = new APIInfo {
+                BaseUrl = BaseUrl,
+                SupportedComponents = new List<string> { "Appointments" },
+                Version = "alpha"
+            };
 
-                var factory = new StudentsApiFactory(info, AccessToken);
+            var factory = new StudentsApiFactory(info, AccessToken);
 
-                factory.GetAppointmentBookingsApi();
-            });
+            factory.GetAppointmentBookingsApi();
         }
 
         [Fact]
