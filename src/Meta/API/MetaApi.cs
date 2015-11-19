@@ -1,5 +1,4 @@
 ﻿using CareerHub.Client.Framework;
-using CareerHub.Client.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +21,7 @@ namespace CareerHub.Client.Meta.API {
 
             var response = await httpClient.GetAsync(uri);
 
-            if (!response.IsSuccessStatusCode) {
-                throw new CareerHubApiHttpException("Could not get the remote info", response.StatusCode);
-            }
+            response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadAsAsync<RemoteAPIInfo>();
             return result;

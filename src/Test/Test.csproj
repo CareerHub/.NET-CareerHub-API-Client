@@ -85,9 +85,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Authorization\AuthorizationApiFacts.cs" />
-    <Compile Include="API\Students\FactoryFacts.cs" />
-    <Compile Include="Framework\UrlUtilityFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,17 +103,9 @@
       <Project>{47FD2E3A-A578-4B0E-8FDD-1FC973C33D94}</Project>
       <Name>Meta</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JobSeekers.Trusted\JobSeekers.Trusted.csproj">
-      <Project>{E2BB8035-9CB7-4C4A-BAE4-EFFA5C4F9E47}</Project>
-      <Name>JobSeekers.Trusted</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JobSeekers.Public\JobSeekers.Public.csproj">
       <Project>{D7346C46-C7EE-41E4-8894-BBAF6B8FEFC8}</Project>
       <Name>JobSeekers.Public</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ConsoleApiTester\ConsoleApiTester.csproj">
-      <Project>{D7F99806-73DD-4308-BF27-4053D1CE95F0}</Project>
-      <Name>ConsoleApiTester</Name>
     </ProjectReference>
     <ProjectReference Include="..\Integrations\Inetgrations.csproj">
       <Project>{A65DA224-EDDF-44F7-877C-92F4DE0EE9C5}</Project>
@@ -130,6 +119,11 @@
       <Project>{EBCBC9F1-8998-4A63-8EAF-3E51E2246FEE}</Project>
       <Name>Authorization</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\Authorization\" />
+    <Folder Include="API\Students\" />
+    <Folder Include="Framework\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
