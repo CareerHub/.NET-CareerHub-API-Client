@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CareerHub.Client.API.JobSeekers.Authorised</id>
+    <version>$version$</version>
+    <authors>CareerHub</authors>
+    <owners>CareerHub</owners>
+    <projectUrl>https://github.com/CareerHub/.NET-CareerHub-API-Client</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Client for the CareerHub API</description>
+    <releaseNotes>This is the initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>CareerHub</tags>
+    <dependencies>
+      <dependency id="CareerHub.Client.Framework" version="2.0.0-alpha" />
+      <dependency id="refit" version="2.4.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Authorised.dll" target="lib\net45" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Authorised.pdb" target="lib\net45" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Authorised.dll" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Authorised.pdb" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
+  </files>
+</package>

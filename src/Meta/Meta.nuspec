@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CareerHub.Client.Meta.API</id>
-    <version>$version$-pre</version>
+    <version>$version$</version>
     <authors>CareerHub</authors>
     <owners>CareerHub</owners>
     <projectUrl>https://github.com/CareerHub/.NET-CareerHub-API-Client</projectUrl>
@@ -11,6 +11,7 @@
     <releaseNotes>This is the initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <dependencies>
+      <dependency id="CareerHub.Client.Framework" version="2.0.0-alpha" />
       <dependency id="refit" version="2.4.1" />
     </dependencies>
   </metadata>
