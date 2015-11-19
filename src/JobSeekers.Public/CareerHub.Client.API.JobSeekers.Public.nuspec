@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>CareerHub.Client.Meta.API</id>
+    <id>CareerHub.Client.API.JobSeekers.Public</id>
     <version>$version$-pre</version>
     <authors>CareerHub</authors>
     <owners>CareerHub</owners>
@@ -10,14 +10,15 @@
     <description>.NET Client for the CareerHub API</description>
     <releaseNotes>This is the initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
+    <tags>CareerHub</tags>
     <dependencies>
       <dependency id="refit" version="2.4.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\CareerHub.Client.API.Meta.dll" target="lib\net45" />
-    <file src="bin\Release\CareerHub.Client.API.Meta.pdb" target="lib\net45" />
-    <file src="bin\Release\CareerHub.Client.API.Meta.dll" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
-    <file src="bin\Release\CareerHub.Client.API.Meta.pdb" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Public.dll" target="lib\net45" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Public.pdb" target="lib\net45" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Public.dll" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
+    <file src="bin\Release\CareerHub.Client.API.JobSeekers.Public.pdb" target="lib\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10" />
   </files>
 </package>

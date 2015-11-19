@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CareerHub.Client.Meta.API {
+namespace CareerHub.Client.Meta.API.Models {
     public sealed class RemoteAPIInfo {
         public IEnumerable<RemoteApiArea> Areas { get; set; }
         public IEnumerable<string> Components { get; set; }

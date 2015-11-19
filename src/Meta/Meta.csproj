@@ -32,12 +32,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="API\IMetaApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ApiArea.cs" />
-    <Compile Include="APIInfo.cs" />
-    <Compile Include="API\MetaApi.cs" />
-    <Compile Include="API\RemoteApiArea.cs" />
-    <Compile Include="API\RemoteAPIInfo.cs" />
+    <Compile Include="API\Models\RemoteApiArea.cs" />
+    <Compile Include="API\Models\RemoteAPIInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">
@@ -72,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

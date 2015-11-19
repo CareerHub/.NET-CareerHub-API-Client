@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CareerHub.Client.Meta.API {
+namespace CareerHub.Client.Meta.API.Models {
     public sealed class RemoteApiArea {
         public string Name { get; set; }
         public string LatestVersion { get; set; }

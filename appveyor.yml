@@ -22,11 +22,11 @@ assembly_info:
   assembly_informational_version: "{version}"
   
 before_build:
-  - nuget restore src/CareerHub API Client.sln
+  - nuget restore 'src/CareerHub API Client.sln'
 
 build:
   verbosity: minimal
-  project: src\CareerHub API Client.sln
+  project: 'src\CareerHub API Client.sln'
   publish_nuget: true             # package projects with .nuspec files and push to artifacts
   publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 
