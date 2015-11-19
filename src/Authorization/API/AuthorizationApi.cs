@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace CareerHub.Client.API.Authorization {
-    public sealed class AuthorizationApi {
+    public sealed class AuthorizationApi : IDisposable {
         private readonly string baseUrl;
 
         private readonly string consumerKey;
@@ -19,18 +19,31 @@ namespace CareerHub.Client.API.Authorization {
         private readonly string authEndpoint;
         private readonly string tokenEndpoint;
 
-        public AuthorizationApi(string baseUrl, string consumerKey, string consumerSecret) {
+        private readonly bool ownsHttpClient;
+        private readonly HttpClient httpClient;
+
+        public AuthorizationApi(string baseUrl, string consumerKey, string consumerSecret, HttpClient client = null, bool? disposeClient = null) {
+            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
+            if (String.IsNullOrWhiteSpace(consumerKey)) throw new ArgumentNullException(nameof(consumerKey));
+            if (String.IsNullOrWhiteSpace(consumerSecret)) throw new ArgumentNullException(nameof(consumerSecret));
+
+            if (baseUrl.EndsWith("/")) {
+                baseUrl = baseUrl.TrimEnd('/');
+            }
+        
             this.baseUrl = baseUrl;
 
             this.consumerKey = consumerKey;
             this.consumerSecret = consumerSecret;
+                        
+            this.authEndpoint = BuildUrl(baseUrl, "oauth/auth");
+            this.tokenEndpoint = BuildUrl(baseUrl, "oauth/token");
 
-            this.authEndpoint = BuildUrl(baseUrl, "/oauth/auth");
-            this.tokenEndpoint = BuildUrl(baseUrl, "/oauth/token");
+            this.ownsHttpClient = disposeClient.HasValue ? disposeClient.Value : client == null;
+            this.httpClient = client ?? new HttpClient();
         }
 
         public async Task<AuthResult> SendClientCredentialsRequestAsync(IEnumerable<string> scopes, CancellationToken cs) {
-            using (var client = new HttpClient()) {
                 var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
                 tokenRequest.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
                     { "client_id", consumerKey },
@@ -38,7 +51,7 @@ namespace CareerHub.Client.API.Authorization {
                     { "grant_type", "client_credentials" }
                 });
 
-                var tokenResponse = await client.SendAsync(tokenRequest, cs);
+                var tokenResponse = await httpClient.SendAsync(tokenRequest, cs);
 
                 tokenResponse.EnsureSuccessStatusCode();
 
@@ -50,27 +63,20 @@ namespace CareerHub.Client.API.Authorization {
                 int expiresInSeconds = int.Parse(expiresIn);
                 var expires = DateTime.UtcNow.AddSeconds(expiresInSeconds);
 
-                await ValidateTokenAsync(client, accessToken, scopes, cs);
+                await ValidateTokenAsync(accessToken, scopes, cs);
 
                 return new AuthResult {
                     AccessToken = accessToken,
                     ExpiresUtc = expires
                 };
-            }
         }
 
         public async Task ValidateTokenAsync(string accessToken, IEnumerable<string> scopes, CancellationToken cs) {
-            using (var client = new HttpClient()) {
-                await ValidateTokenAsync(client, accessToken, scopes, cs);
-            }
-        }
-
-        private async Task ValidateTokenAsync(HttpClient client, string accessToken, IEnumerable<string> scopes, CancellationToken cs) {
             var validationUrl = GetTokenInfoUrl(scopes);
             var validationRequest = new HttpRequestMessage(HttpMethod.Get, validationUrl);
             validationRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var validationResponse = await client.SendAsync(validationRequest, cs);
+            var validationResponse = await httpClient.SendAsync(validationRequest, cs);
 
             validationResponse.EnsureSuccessStatusCode();
             string validationContent = await validationResponse.Content.ReadAsStringAsync();
@@ -83,12 +89,10 @@ namespace CareerHub.Client.API.Authorization {
             }
         }
 
-        private static string GetTokenInfoUrl(IEnumerable<string> scopes) {
-            if (scopes == null) throw new ArgumentNullException("scopes");
+        private string GetTokenInfoUrl(IEnumerable<string> scopes) {
+            string url = BuildUrl(baseUrl, "oauth/tokeninfo");
 
-            string url = "tokeninfo";
-
-            if (scopes.Any()) {
+            if (scopes != null && scopes.Any()) {
                 url += "?scopes=" + String.Join("&scopes=", scopes);
             }
 
@@ -99,6 +103,12 @@ namespace CareerHub.Client.API.Authorization {
             var authEndpointBuilder = new UriBuilder(baseUrl);
             authEndpointBuilder.Path += path;
             return authEndpointBuilder.ToString();
+        }
+
+        public void Dispose() {
+            if(ownsHttpClient) {
+                httpClient.Dispose();
+            }
         }
     }
 }

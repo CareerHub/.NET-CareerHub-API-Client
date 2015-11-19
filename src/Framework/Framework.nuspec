@@ -12,7 +12,7 @@
     <copyright>Copyright 2014</copyright>
     <tags>CareerHub</tags>
     <dependencies>
-      <dependency id="Microsoft.Net.Http" version="2.2.28" />
+      <dependency id="Microsoft.Net.Http" version="2.2.29" />
       <dependency id="refit" version="2.4.1" />
     </dependencies>
   </metadata>

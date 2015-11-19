@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeekers.Authorised", "Jo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSeekers.Public", "JobSeekers.Public\JobSeekers.Public.csproj", "{D7346C46-C7EE-41E4-8894-BBAF6B8FEFC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inetgrations", "Integrations\Inetgrations.csproj", "{A65DA224-EDDF-44F7-877C-92F4DE0EE9C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integrations", "Integrations\Integrations.csproj", "{A65DA224-EDDF-44F7-877C-92F4DE0EE9C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{F0F93FB4-9251-4795-B62F-24247A452BF8}"
 EndProject
