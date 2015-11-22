@@ -64,7 +64,7 @@
     <Compile Include="API\Questions\Models\QuestionSubmissionModel.cs" />
     <Compile Include="API\Resources\IResourcesApi.cs" />
     <Compile Include="API\Resources\Models\ResourceModel.cs" />
-    <Compile Include="API\Models\UploadFileModel.cs" />
+    <Compile Include="API\Questions\Models\UploadFileModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">

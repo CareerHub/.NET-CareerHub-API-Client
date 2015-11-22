@@ -38,6 +38,7 @@
     <Compile Include="Http\AuthenticatedHttpClientFactory.cs" />
     <Compile Include="Http\AuthenticatedMessageHandler.cs" />
     <Compile Include="Http\IAuthenticatedHttpClientFactory.cs" />
+    <Compile Include="Http\OAuthJsonHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
