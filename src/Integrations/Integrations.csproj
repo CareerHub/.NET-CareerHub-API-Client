@@ -32,6 +32,30 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="API\Events\IEventProvidersApi.cs" />
+    <Compile Include="API\Events\Models\AdminProvider.cs" />
+    <Compile Include="API\Events\Models\AttendanceSummaryModel.cs" />
+    <Compile Include="API\Events\Models\CategoriesModel.cs" />
+    <Compile Include="API\Events\Models\EventBookingSettingsModel.cs" />
+    <Compile Include="API\Events\Models\EventBookingType.cs" />
+    <Compile Include="API\Events\Models\EventModel.cs" />
+    <Compile Include="API\Events\IEventsApi.cs" />
+    <Compile Include="API\Events\Models\EventOrganisationProviderModel.cs" />
+    <Compile Include="API\Events\Models\OrganisationProviderModel.cs" />
+    <Compile Include="API\Events\Models\ProvidersModel.cs" />
+    <Compile Include="API\Forms\IFormReportsApi.cs" />
+    <Compile Include="API\JobSeekers\IJobSeekersApi.cs" />
+    <Compile Include="API\JobSeekers\Models\AddressModel.cs" />
+    <Compile Include="API\JobSeekers\Models\ApiPagingInfo.cs" />
+    <Compile Include="API\JobSeekers\Models\EmailAddressModel.cs" />
+    <Compile Include="API\JobSeekers\Models\EmailAddressModifyModel.cs" />
+    <Compile Include="API\JobSeekers\Models\ExtendedProperty.cs" />
+    <Compile Include="API\JobSeekers\Models\JobSeekerModel.cs" />
+    <Compile Include="API\JobSeekers\Models\JobSeekerModifyModel.cs" />
+    <Compile Include="API\JobSeekers\Models\JobSeekerModifyOperation.cs" />
+    <Compile Include="API\JobSeekers\Models\JobSeekersResponse.cs" />
+    <Compile Include="API\JobSeekers\Models\UserModel.cs" />
+    <Compile Include="API\JobSeekers\Models\UserModifyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\Jobs\Models\ContractHours.cs" />
     <Compile Include="API\Jobs\Models\ContractType.cs" />
@@ -83,6 +107,10 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\Appointments\" />
+    <Folder Include="API\Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />

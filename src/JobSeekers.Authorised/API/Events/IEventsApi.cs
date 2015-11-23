@@ -13,11 +13,11 @@ namespace CareerHub.Client.JobSeekers.Authorised.API.Events {
         Task<IEnumerable<EventModel>> GetEvents();
 
         [OAuthJsonHeader]
-        [Get("api/jobseeker/v1/events/{id}")]
+        [Get("api/jobseeker/v1/events/search")]
         Task<IEnumerable<EventModel>> SearchEvents(string text, int? take = null, int? skip = null);
 
         [OAuthJsonHeader]
-        [Get("api/jobseeker/v1/events")]
+        [Get("api/jobseeker/v1/events/{id}")]
         Task<EventModel> GetEvent(int id);
     }
 }
