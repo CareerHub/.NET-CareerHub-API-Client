@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace CareerHub.Client.Framework.Http {
-    internal class AuthenticatedMessageHandler : HttpClientHandler {
+	public class AuthenticatedMessageHandler : HttpClientHandler {
         private readonly Func<Task<string>> getToken;
 
         public AuthenticatedMessageHandler(Func<Task<string>> getToken) {
