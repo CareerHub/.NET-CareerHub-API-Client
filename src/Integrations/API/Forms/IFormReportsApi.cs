@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.API.Integrations.API.Forms {
     public interface IFormReportsApi {
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/forms/{formid}/reports/{id}")]
+        [Get("/api/integrations/v1/forms/{formid}/reports/{id}")]
         Task<IEnumerable<IReadOnlyDictionary<string, string>>> GetAsync(int formid, int id);
     }
 }

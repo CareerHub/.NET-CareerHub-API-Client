@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.API.Integrations.Workflows {
     public interface IWorkflowApi {
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/workflows/{id}")]
+        [Get("/api/integrations/v1/workflows/{id}")]
         Task<WorkflowModel> GetWorkflow(int id);
 
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/workflows")]
+        [Get("/api/integrations/v1/workflows")]
         Task<IEnumerable<WorkflowModel>> GetWorkflows();
     }
 }

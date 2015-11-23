@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.JobSeekers.Authorised.API.Events {
     public interface IEventBookingsApi {
         [OAuthJsonHeader]
-        [Get("api/jobseeker/v1/events/{eventId}/bookings/upcoming")]
+        [Get("/api/jobseeker/v1/events/{eventId}/bookings/upcoming")]
         Task<IEnumerable<EventModel>> GetUpcomingEvents();
 
         [OAuthJsonHeader]
-        [Post("api/jobseeker/v1/events/{eventId}/bookings")]
+        [Post("/api/jobseeker/v1/events/{eventId}/bookings")]
         Task<EventBookingModel> BookEvent(int eventId);
 
         [OAuthJsonHeader]
-        [Delete("api/jobseeker/v1/events/{eventId}/bookings")]
+        [Delete("/api/jobseeker/v1/events/{eventId}/bookings")]
         Task CancelBooking(int eventId);
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.API.Integrations.Events {
     public interface IEventProvidersApi {
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/events/{eventid}/providers/organisations")]
+        [Get("/api/integrations/v1/events/{eventid}/providers/organisations")]
         Task<IEnumerable<OrganisationProviderModel>> GetEvents(int eventid);
     }
 }

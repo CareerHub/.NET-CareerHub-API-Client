@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.JobSeekers.Authorised.API.Experiences {
     public interface IExperienceTypesApi {
         [OAuthJsonHeader]
-        [Get("api/jobseeker/v1/experiencetypes")]
+        [Get("/api/jobseeker/v1/experiencetypes")]
         Task<IEnumerable<ExpereinceTypeModel>> GetExperienceTypes();
     }
 }

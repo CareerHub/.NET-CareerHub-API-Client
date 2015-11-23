@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.API.Integrations.Workflows {
     public interface IWorkflowProgressApi {
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/workflows/{workflowid}/progress")]
+        [Get("/api/integrations/v1/workflows/{workflowid}/progress")]
         Task<IEnumerable<ProgressModel>> Get(int workflowid);
     }
 }

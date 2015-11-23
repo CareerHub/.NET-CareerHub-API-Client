@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 namespace CareerHub.Client.API.Integrations.Events {
     public interface IEventsApi {
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/events")]
+        [Get("/api/integrations/v1/events")]
         Task<IEnumerable<EventModel>> GetEvents();
         
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/events/{id}")]
+        [Get("/api/integrations/v1/events/{id}")]
         Task<EventModel> GetEvent(int id);
 
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/events/current")]
+        [Get("/api/integrations/v1/events/current")]
         Task<IEnumerable<EventModel>> GetCurrentEvents();
 
         [OAuthJsonHeader]
-        [Get("api/integrations/v1/events/published")]
+        [Get("/api/integrations/v1/events/published")]
         Task<IEnumerable<EventModel>> GetPublishedEvents();
     }
 }
