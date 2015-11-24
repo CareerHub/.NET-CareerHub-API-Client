@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace CareerHub.Client.API.Authorization {
-    public sealed class AuthorizationApi : IDisposable {
+    public sealed class AuthorizationApi : IDisposable, IAuthorizationApi {
         private readonly string baseUrl;
 
         private readonly string consumerKey;
