@@ -8,7 +8,7 @@
 
 Install one of the API Client Libraries
 ``` nuget
-Install-Package CareerHub.Client.API.JobSeekers.Public # or one of the other packages
+Install-Package CareerHub.Client.API.JobSeekers.Public -Pre # or one of the other packages
 ```
 
 Start using in your code
@@ -34,6 +34,10 @@ We have provided a OAuth Client that performs the Client Credentials Authorizati
 For other authorization flows you will need to use a different [OAuth Client](http://oauth.net/2/). 
 Our current recommendation is to use the [Microsoft Owin Security Auth Package](https://www.nuget.org/packages/Microsoft.Owin.Security.OAuth)
 
+``` nuget
+Install-Package CareerHub.Client.API.Authorization -Pre 
+```
+
 Request an access token using Client Credentials:
 
 ``` c#
@@ -45,9 +49,13 @@ var result = await authApi.SendClientCredentialsRequestAsync(new string[] { "Som
 ```
 
 ### Integrations
+``` nuget
+Install-Package CareerHub.Client.API.Integrations -Pre
+```
+
 [API Documentation](https://dev.careerhub.com.au/version3/help/api/area/integrations/v1)
 
-Example
+Example (using Authorization package)
 ``` c#
 string baseUrl = "http://dev.careerhub.com.au/version3";
 string clientId = "xxx";
@@ -67,10 +75,24 @@ var report = await formReportsApi.GetJobsAsync(formId, reportId);
 ```
 
 ### JobSeekers Authorised
+``` nuget
+Install-Package CareerHub.Client.API.JobSeekers.Authorised -Pre 
+```
+
 [API Documentation](https://dev.careerhub.com.au/version3/help/api/area/jobseeker-authorised/v1)
 
+
 ### JobSeekers Public
+``` nuget
+Install-Package CareerHub.Client.API.JobSeekers.Public -Pre 
+```
+
 [API Documentation](https://dev.careerhub.com.au/version3/help/api/area/jobseeker-public/v1)
 
 ### Meta
+
+``` nuget
+Install-Package CareerHub.Client.API.Meta -Pre 
+```
+
 [API Documentation](https://dev.careerhub.com.au/version3/help/api/area/meta/v1)
