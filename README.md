@@ -61,8 +61,8 @@ string baseUrl = "http://dev.careerhub.com.au/version3";
 string clientId = "xxx";
 string clientSecret = "xxx";
 
-IAuthorizationApi authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
-var result = await authApi.SendClientCredentialsRequestAsync(new string[] { "Integrations.Forms" }, CancellationToken.None);
+IAuthorizationApi authApi = new AuthorizationApi();
+var result = await authApi.SendClientCredentialsRequestAsync(baseUrl, clientId, clientSecret, new string[] { "Integrations.Forms" }, CancellationToken.None);
 
 IApiFactory apiFactory = new ApiFactory();
 var formReportsApi = apiFactory.GetApi<IFormReportsApi>(baseUrl, result.AccessToken);

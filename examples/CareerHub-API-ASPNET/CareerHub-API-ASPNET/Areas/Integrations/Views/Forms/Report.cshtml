@@ -1,0 +1,26 @@
+﻿@using CareerHub_API_ASPNET.Areas.Integrations.Models.Forms
+@model FormReportModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<table>
+    <thead>
+        <tr>
+            @foreach (var header in Model.Headers) {
+                <th>@header</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.Data) {
+        <tr>
+            @foreach (var col in row.Values) {
+                <td>@col</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
