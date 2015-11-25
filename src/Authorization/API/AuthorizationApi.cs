@@ -12,9 +12,7 @@ using System.Threading.Tasks;
 
 namespace CareerHub.Client.API.Authorization {
     public sealed class AuthorizationApi : IDisposable, IAuthorizationApi {
-        private readonly string baseUrl;
-
-        private readonly string consumerKey;
+        
         private readonly string consumerSecret;
         private readonly string authEndpoint;
         private readonly string tokenEndpoint;
@@ -22,57 +20,63 @@ namespace CareerHub.Client.API.Authorization {
         private readonly bool ownsHttpClient;
         private readonly HttpClient httpClient;
 
-        public AuthorizationApi(string baseUrl, string consumerKey, string consumerSecret, HttpClient client = null, bool? disposeClient = null) {
-            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
-            if (String.IsNullOrWhiteSpace(consumerKey)) throw new ArgumentNullException(nameof(consumerKey));
-            if (String.IsNullOrWhiteSpace(consumerSecret)) throw new ArgumentNullException(nameof(consumerSecret));
-
-            if (baseUrl.EndsWith("/")) {
-                baseUrl = baseUrl.TrimEnd('/');
-            }
-        
-            this.baseUrl = baseUrl;
-
-            this.consumerKey = consumerKey;
-            this.consumerSecret = consumerSecret;
-                        
-            this.authEndpoint = BuildUrl(baseUrl, "oauth/auth");
-            this.tokenEndpoint = BuildUrl(baseUrl, "oauth/token");
-
+        public AuthorizationApi(HttpClient client = null, bool? disposeClient = null) {
             this.ownsHttpClient = disposeClient.HasValue ? disposeClient.Value : client == null;
             this.httpClient = client ?? new HttpClient();
         }
 
-        public async Task<AuthResult> SendClientCredentialsRequestAsync(IEnumerable<string> scopes, CancellationToken cs) {
-                var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
-                tokenRequest.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
-                    { "client_id", consumerKey },
-                    { "client_secret", consumerSecret },
-                    { "grant_type", "client_credentials" }
+        public async Task<AuthResult> SendClientCredentialsRequestAsync(string baseUrl, string clientId, string clientSecret, IEnumerable<string> scopes, CancellationToken cs) {
+            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException(nameof(clientId));
+            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException(nameof(clientSecret));
+            baseUrl = FixBaseUrl(baseUrl);
+
+            string tokenEndpoint = BuildUrl(baseUrl, "oauth/token");
+            string scopeString = scopes == null ? "" : String.Join(" ", scopes);
+
+            var tokenRequest = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint);
+            tokenRequest.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
+                    { "grant_type", "client_credentials" },
+                    { "client_id", clientId },
+                    { "client_secret", clientSecret },
+                    { "scope", scopeString }
                 });
 
-                var tokenResponse = await httpClient.SendAsync(tokenRequest, cs);
+            var tokenResponse = await httpClient.SendAsync(tokenRequest, cs);
 
-                tokenResponse.EnsureSuccessStatusCode();
+            tokenResponse.EnsureSuccessStatusCode();
 
-                string tokenContent = await tokenResponse.Content.ReadAsStringAsync();
+            string tokenContent = await tokenResponse.Content.ReadAsStringAsync();
 
-                var tokenPayload = JObject.Parse(tokenContent);
-                var accessToken = tokenPayload.Value<string>("access_token");
-                var expiresIn = tokenPayload.Value<string>("expires_in");
-                int expiresInSeconds = int.Parse(expiresIn);
-                var expires = DateTime.UtcNow.AddSeconds(expiresInSeconds);
+            var tokenPayload = JObject.Parse(tokenContent);
+            var accessToken = tokenPayload.Value<string>("access_token");
+            var expiresIn = tokenPayload.Value<string>("expires_in");
+            int expiresInSeconds = int.Parse(expiresIn);
+            var expires = DateTime.UtcNow.AddSeconds(expiresInSeconds);
 
-                await ValidateTokenAsync(accessToken, scopes, cs);
+            await ValidateTokenAsync(baseUrl, clientId, accessToken, scopes, cs);
 
-                return new AuthResult {
-                    AccessToken = accessToken,
-                    ExpiresUtc = expires
-                };
+            return new AuthResult {
+                AccessToken = accessToken,
+                ExpiresUtc = expires
+            };
         }
 
-        public async Task ValidateTokenAsync(string accessToken, IEnumerable<string> scopes, CancellationToken cs) {
-            var validationUrl = GetTokenInfoUrl(scopes);
+        private static string FixBaseUrl(string baseUrl) {
+            if (baseUrl.EndsWith("/")) {
+                baseUrl = baseUrl.TrimEnd('/');
+            }
+
+            return baseUrl;
+        }
+
+        public async Task ValidateTokenAsync(string baseUrl, string clientId, string accessToken, IEnumerable<string> scopes, CancellationToken cs) {
+            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException(nameof(clientId));
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
+            baseUrl = FixBaseUrl(baseUrl);
+
+            var validationUrl = GetTokenInfoUrl(baseUrl, scopes);
             var validationRequest = new HttpRequestMessage(HttpMethod.Get, validationUrl);
             validationRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -84,12 +88,12 @@ namespace CareerHub.Client.API.Authorization {
             var validationPayload = JObject.Parse(validationContent);
             var audience = validationPayload.Value<string>("audience");
 
-            if (consumerKey != audience) {
+            if (clientId != audience) {
                 throw new SecurityException("Client ID does not match access token audience");
             }
         }
 
-        private string GetTokenInfoUrl(IEnumerable<string> scopes) {
+        private string GetTokenInfoUrl(string baseUrl, IEnumerable<string> scopes) {
             string url = BuildUrl(baseUrl, "oauth/tokeninfo");
 
             if (scopes != null && scopes.Any()) {
@@ -106,7 +110,7 @@ namespace CareerHub.Client.API.Authorization {
         }
 
         public void Dispose() {
-            if(ownsHttpClient) {
+            if (ownsHttpClient) {
                 httpClient.Dispose();
             }
         }
