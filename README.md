@@ -64,8 +64,8 @@ string clientSecret = "xxx";
 IAuthorizationApi authApi = new AuthorizationApi(baseUrl, clientId, clientSecret);
 var result = await authApi.SendClientCredentialsRequestAsync(new string[] { "Integrations.Forms" }, CancellationToken.None);
 
-IApiFactory apiFactory = new ApiFactory(baseUrl, result.AccessToken);
-var formReportsApi = apiFactory.GetApi<IFormReportsApi>();
+IApiFactory apiFactory = new ApiFactory();
+var formReportsApi = apiFactory.GetApi<IFormReportsApi>(baseUrl, result.AccessToken);
 
 int formId = 1;
 int reportId = 2;

@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace CareerHub.Client.Framework.API {
     public interface IApiFactory {
-        T GetApi<T>();
+        T GetApi<T>(string baseUrl, string accessToken);
     }
 }

@@ -8,20 +8,17 @@ using System.Threading.Tasks;
 
 namespace CareerHub.Client.Framework.API {
     public class ApiFactory : IApiFactory {
-        private readonly string baseUrl = null;
-        private readonly string accessToken = null;
         private readonly IAuthenticatedHttpClientFactory handlerFactory;
 
-        public ApiFactory(string baseUrl, string accessToken, IAuthenticatedHttpClientFactory handlerFactory = null) {
-            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
-            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(accessToken);
-
-            this.baseUrl = baseUrl;
-            this.accessToken = accessToken;
+        public ApiFactory(IAuthenticatedHttpClientFactory handlerFactory = null) {
+            
             this.handlerFactory = handlerFactory ?? new AuthenticatedHttpClientFactory();
         }
 
-        public T GetApi<T>() {
+        public T GetApi<T>(string baseUrl, string accessToken) {
+            if (String.IsNullOrWhiteSpace(baseUrl)) throw new ArgumentNullException(nameof(baseUrl));
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
+
             var client = handlerFactory.GetClientHandler(baseUrl, accessToken);
 
             //TODO: Check component
