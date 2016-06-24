@@ -1,0 +1,27 @@
+﻿{
+    "version": "2.2.0-*",
+    "description": ".NET Client for the CareerHub API",
+    "authors": [ "CareerHub" ],
+    "packOptions": {
+        "repository": {
+            "url": "https://github.com/CareerHub/.NET-CareerHub-API-Client"
+        },
+        "owners": [ "CareerHub" ],
+        "tags": [ "CareerHub", "API" ],
+        "requireLicenseAcceptance": false,
+        "licenseUrl": ""
+    },
+    "copyright": "Copyright 2016",
+
+    "dependencies": {
+        "Microsoft.Bcl": "1.1.10",
+        "Microsoft.Bcl.Build": "1.0.21",
+        "Microsoft.Net.Http": "2.2.29",
+        "Newtonsoft.Json": "7.0.1"
+    },
+
+    "frameworks": {
+        "net45": { },
+        "net46": { }
+    }
+}
