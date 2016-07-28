@@ -27,7 +27,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Authorization", "src\Career
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4CD850B2-0294-4BC5-8821-D128AADB0A4E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "test\Test\Test.xproj", "{06BF5C28-BC6F-4A65-92FF-247E087320F2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "test\Cabinet.Tests\Test.xproj", "{06BF5C28-BC6F-4A65-92FF-247E087320F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{83BBA472-52EF-4B9B-B4FD-768FB542E1D1}"
 	ProjectSection(SolutionItems) = preProject
